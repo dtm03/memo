@@ -1,58 +1,25 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
-import {
-  View,
-  Dimensions,
-  Animated,
-} from "react-native";
-import Inspiration from "./screens/Inspiration";
-import Collection from "./screens/Collection";
-import Library from "./screens/Library";
-import Tabs from "./components/Tabs";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import Main from "./screens/Main";
+import Memo from "./screens/Memo";
+import Book from "./screens/Book";
 
-const { width } = Dimensions.get("screen");
+const Stack = createStackNavigator();
 
-const tabs = {
-  inspo: <Inspiration />,
-  collection: <Collection />,
-  library: <Library />,
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="Main"
+        screenOptions={{ headerShown: false }}
+      >
+        <Stack.Screen name="Main" component={Main} />
+          <Stack.Screen name="Memo" component={Memo} />
+          <Stack.Screen name="Book" component={Book} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 };
 
-const data = Object.keys(tabs).map((i) => ({
-  key: i,
-  title: i,
-  view: tabs[i],
-  ref: React.createRef(),
-}));
-
-export default function App() {
-  const scrollX = React.useRef(new Animated.Value(0)).current;
-  const ref = React.useRef();
-  const onItemPress = React.useCallback((itemIndex) => {
-    ref?.current?.scrollToOffset({
-      offset: itemIndex * width,
-    });
-  }, []);
-  return (
-    <View style={{ flex: 1 }}>
-      <StatusBar hidden />
-      <Animated.FlatList
-        ref={ref}
-        data={data}
-        keyExtractor={(item) => item.key}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        pagingEnabled
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-          { useNativeDriver: false }
-        )}
-        bounces={false}
-        renderItem={({ item }) => {
-          return item.view;
-        }}
-      />
-      <Tabs scrollX={scrollX} data={data} onItemPress={onItemPress} />
-    </View>
-  );
-}
+export default App;

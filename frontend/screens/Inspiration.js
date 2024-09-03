@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Dimensions } from "react-native";
+import { View, StyleSheet, Dimensions, Text } from "react-native";
 import ListContainer from "../components/ListContainer";
 import MemoCard from "../components/MemoCard";
 
@@ -14,6 +14,8 @@ const data = [
 const Inspiration = () => {
   return (
     <View style={styles.container}>
+
+
       <ListContainer data={data} renderItem={({ item }) => <MemoCard memo={item} />} />
     </View>
   );
@@ -26,6 +28,7 @@ const styles = StyleSheet.create({
     height,
     width,
   },
+
 });
 
 export default Inspiration;

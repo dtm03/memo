@@ -1,9 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { useRoute } from "@react-navigation/native";
 
-const Memo = () => {
-  const route = useRoute();
+const Memo = ({ route }) => {
   const { memo } = route.params;
 
   return (
@@ -17,18 +15,15 @@ const Memo = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#f0f0f0",
     padding: 20,
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    marginBottom: 10,
   },
   content: {
     fontSize: 16,
+    marginTop: 10,
   },
 });
 

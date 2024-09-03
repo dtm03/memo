@@ -1,19 +1,26 @@
 package org.memo.backend.controller;
 
+import jakarta.transaction.Transactional;
+import org.memo.backend.database.MemoRepository;
 import org.memo.backend.database.UserRepository;
+import org.memo.backend.model.Memo;
 import org.memo.backend.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Set;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
     private final UserRepository userRepository;
+    private final MemoRepository memoRepository;
 
-    public UserController(UserRepository userRepository) {
+    public UserController(UserRepository userRepository, MemoRepository memoRepository) {
         this.userRepository = userRepository;
+        this.memoRepository = memoRepository;
     }
 
     @PostMapping
@@ -26,10 +33,26 @@ public class UserController {
         }
     }
 
-    // All memos need to be updated and all private memos need to be deleted
+    @Transactional
     @DeleteMapping("/{userId}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
         try {
+            User user = userRepository.findById(userId).orElse(null);
+            if (user == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
+
+            Set<Memo> memos = user.getMemos();
+            for (Memo memo : memos) {
+                Set<User> users = memo.getUsers();
+                if (users.size() == 1 && users.contains(user)) {
+                    memoRepository.delete(memo);
+                } else {
+                    users.remove(user);
+                    memoRepository.save(memo);
+                }
+            }
+
             userRepository.deleteById(userId);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         } catch (Exception e) {
