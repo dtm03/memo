@@ -1,9 +1,9 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import Main from "./screens/Main";
-import Memo from "./screens/Memo";
-import Book from "./screens/Book";
+import Menu from "./screens/Menu";
+import MemoDetail from "./screens/MemoDetail";
+import BookDetail from "./archive/BookDetail";
 
 const Stack = createStackNavigator();
 
@@ -11,12 +11,12 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Main"
+        initialRouteName="Menu"
         screenOptions={{ headerShown: false }}
       >
-        <Stack.Screen name="Main" component={Main} />
-          <Stack.Screen name="Memo" component={Memo} />
-          <Stack.Screen name="Book" component={Book} />
+        <Stack.Screen name="Main" component={Menu} />
+          <Stack.Screen name="Memo" component={MemoDetail} />
+          <Stack.Screen name="Book" component={BookDetail} />
       </Stack.Navigator>
     </NavigationContainer>
   );

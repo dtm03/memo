@@ -1,9 +1,10 @@
 import React from "react";
-import { FlatList, View, StyleSheet } from "react-native";
+import { FlatList, View } from "react-native";
+import { commonStyles} from "../styles/styles";
 
 const ListContainer = ({ data, renderItem }) => {
   return (
-    <View style={styles.container}>
+    <View style={commonStyles.listContainer}>
       <FlatList
         data={data}
         renderItem={renderItem}
@@ -12,13 +13,5 @@ const ListContainer = ({ data, renderItem }) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10,
-      paddingTop: 200,
-  },
-});
 
 export default ListContainer;

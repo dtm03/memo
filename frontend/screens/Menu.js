@@ -7,25 +7,26 @@ import {
 } from "react-native";
 import Inspiration from "./Inspiration";
 import Collection from "./Collection";
-import Library from "./Library";
-import Tabs from "../components/Tabs";
+import Tabs from "../components/home/Tabs";
+import NewMemo from "./NewMemo";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 const { width } = Dimensions.get("screen");
 
 const tabs = {
     inspo: <Inspiration />,
     collection: <Collection />,
-    library: <Library />,
+    "plus": <NewMemo />,
 };
 
 const data = Object.keys(tabs).map((i) => ({
     key: i,
-    title: i,
+    title: i === "plus" ? <Icon name="plus" size={20} color="white" /> : i,
     view: tabs[i],
     ref: React.createRef(),
 }));
 
-export default function Main() {
+export default function Menu() {
     const scrollX = React.useRef(new Animated.Value(0)).current;
     const ref = React.useRef();
     const onItemPress = React.useCallback((itemIndex) => {
@@ -34,7 +35,7 @@ export default function Main() {
         });
     }, []);
     return (
-        <View style={{ flex: 1 }}>
+        <View>
             <StatusBar hidden />
             <Animated.FlatList
                 ref={ref}
