@@ -11,6 +11,12 @@ export const data = [
     mediaId: 102,
     creatorIds: [203, 204],
   },
+  {
+    id: 3,
+    quote: "Another inspirational quote.",
+    mediaId: 102,
+    creatorIds: [203, 204],
+  },
 ];
 
 export const media = [

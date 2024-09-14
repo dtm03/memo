@@ -1,6 +1,6 @@
 import React from "react";
 import { FlatList, View } from "react-native";
-import { commonStyles} from "../styles/styles";
+import { commonStyles } from "../styles/styles";
 
 const ListContainer = ({ data, renderItem }) => {
   return (

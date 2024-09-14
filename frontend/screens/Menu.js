@@ -11,11 +11,11 @@ import Tabs from "../components/home/Tabs";
 import NewMemo from "./NewMemo";
 import Icon from "react-native-vector-icons/FontAwesome";
 
-const { width } = Dimensions.get("screen");
+const { width } = Dimensions.get("window");
 
 const tabs = {
-    inspo: <Inspiration />,
-    collection: <Collection />,
+    Inspo: <Inspiration />,
+    Collection: <Collection />,
     "plus": <NewMemo />,
 };
 
@@ -35,7 +35,7 @@ export default function Menu() {
         });
     }, []);
     return (
-        <View>
+        <View style={{backgroundColor: "black"}}>
             <StatusBar hidden />
             <Animated.FlatList
                 ref={ref}

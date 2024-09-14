@@ -1,10 +1,12 @@
 import React from "react";
 import {View, Text, StyleSheet, TouchableOpacity, Linking, Image} from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
 import {memoDetailStyles} from "../styles/styles";
+import {useNavigation} from "@react-navigation/native";
+import Icon from "react-native-vector-icons/MaterialIcons";
 
 const MemoDetail = ({route}) => {
     const {memo, source} = route.params;
+    const navigation = useNavigation();
 
     return (
         <View style={memoDetailStyles.container}>
@@ -26,11 +28,12 @@ const MemoDetail = ({route}) => {
             )}
             {source === "Collection" && (
                 <View style={memoDetailStyles.buttonContainer}>
-                    <TouchableOpacity style={memoDetailStyles.button}>
-                        <Icon name="edit" size={20} color="black"/>
+                    <TouchableOpacity style={memoDetailStyles.button}
+                                      onPress={() => navigation.navigate("EditMemo", {memo})}>
+                        <Icon name="edit-note" size={30} color="darkgrey"/>
                     </TouchableOpacity>
                     <TouchableOpacity style={memoDetailStyles.button}>
-                        <Icon name="trash" size={20} color="black"/>
+                        <Icon name="delete-outline" size={30} color="darkgrey"/>
                     </TouchableOpacity>
                 </View>
             )}

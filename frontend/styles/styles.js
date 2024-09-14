@@ -3,51 +3,45 @@ import {StyleSheet, Dimensions} from "react-native";
 const {width, height} = Dimensions.get("screen");
 
 export const commonStyles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 20,
-        height,
-        width,
-    },
-    label: {
-        fontSize: 18,
-        marginVertical: 10,
-    },
-    input: {
-        borderWidth: 1,
-        borderColor: "gray",
-        padding: 10,
-        borderRadius: 5,
-        marginBottom: 20,
-    },
-    buttonContainer: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        marginTop: 10,
-    },
     listContainer: {
         flex: 1,
-        padding: 10,
-        paddingTop: 200,
-    },
-});
-
-export const inspirationStyles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "blue",
+        alignItems: "center",
+        marginTop: 70,
+        paddingBottom: 100,
         height,
         width,
-    },
+    }
 });
 
-export const collectionStyles = StyleSheet.create({
-    collectionContainer: {
-        flex: 1,
-        backgroundColor: "green",
-        height,
-        width,
-    },
+export const newMemoStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+    paddingTop: 50,
+    height,
+    width,
+  },
+  label: {
+    fontSize: 18,
+    marginVertical: 10,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "gray",
+    padding: 10,
+    borderRadius: 5,
+    marginBottom: 20,
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 10,
+  },
+  toggleContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginVertical: 10,
+  },
 });
 
 export const memoDetailStyles = StyleSheet.create({
@@ -87,30 +81,36 @@ export const memoDetailStyles = StyleSheet.create({
 export const memoCardStyles = StyleSheet.create({
     card: {
         backgroundColor: "white",
-        padding: 15,
-        marginVertical: 10,
-        borderRadius: 10,
-        shadowColor: "#000",
-        shadowOffset: {width: 0, height: 2},
-        shadowOpacity: 0.1,
-        shadowRadius: 5,
-        elevation: 3,
+        padding: 10,
+        margin: 10,
+        borderRadius: 15,
+        width: width - 30, // Adjust width to fit within the screen with padding
     },
-    title: {
+    textContainer: {
+        justifyContent: "center",
+        alignItems: "center",
+        flex: 1,
+    },
+    text: {
         fontSize: 18,
         fontWeight: "bold",
+        textAlign: "center",
     },
-    content: {
+    divider: {
+        height: 1,
+        backgroundColor: "darkgrey",
+        marginVertical: 10,
+    },
+    authorContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+        marginHorizontal: 5,
+    },
+    author: {
         fontSize: 14,
-        marginTop: 5,
-    },
-    starButton: {
-        marginTop: 10,
-        alignSelf: "flex-start",
+        flex: 1,
     },
     button: {
-        backgroundColor: "blue",
-        padding: 10,
-        borderRadius: 5,
+        marginLeft: 10,
     },
 });

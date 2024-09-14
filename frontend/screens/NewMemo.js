@@ -1,36 +1,46 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Button } from "react-native";
-import { commonStyles } from "../styles/styles";
+import { View, Text, TextInput, Button, Switch } from "react-native";
+import { newMemoStyles } from "../styles/styles";
 
 const NewMemo = ({ navigation }) => {
   const [quote, setQuote] = useState("");
   const [mediaId, setMediaId] = useState("");
   const [creatorIds, setCreatorIds] = useState("");
+  const [isPublic, setIsPublic] = useState(false);
 
   return (
-    <View style={commonStyles.container}>
-      <Text style={commonStyles.label}>Quote:</Text>
+    <View style={newMemoStyles.container}>
+      <Text style={newMemoStyles.label}>Quote:</Text>
       <TextInput
-        style={commonStyles.input}
+        style={newMemoStyles.input}
         value={quote}
         onChangeText={setQuote}
-        placeholder="Enter quote"
+        placeholder="Enter new memo"
+        maxLength={100}
       />
-      <Text style={commonStyles.label}>Media ID:</Text>
+      <Text style={newMemoStyles.label}>Source:</Text>
       <TextInput
-        style={commonStyles.input}
+        style={newMemoStyles.input}
         value={mediaId}
         onChangeText={setMediaId}
-        placeholder="Enter media ID"
-        keyboardType="numeric"
+        placeholder="Enter source"
+        maxLength={50}
       />
-      <Text style={commonStyles.label}>Creator IDs (comma separated):</Text>
+      <Text style={newMemoStyles.label}>Creator's:</Text>
       <TextInput
-        style={commonStyles.input}
+        style={newMemoStyles.input}
         value={creatorIds}
         onChangeText={setCreatorIds}
-        placeholder="Enter creator IDs"
+        placeholder="Enter the creators"
+        maxLength={50}
       />
+      <View style={newMemoStyles.toggleContainer}>
+        <Text style={newMemoStyles.label}>Public:</Text>
+        <Switch
+          value={isPublic}
+          onValueChange={setIsPublic}
+        />
+      </View>
       <Button title="Add Memo" onPress={() => {}} />
     </View>
   );
