@@ -1,9 +1,9 @@
 export const data = [
   {
     id: 1,
-    quote: "This is an inspirational quote.",
+    quote: "This is an inspirational quote. A very long quote though, so we might actually need two lines.",
     mediaId: 101,
-    creatorIds: [201, 202],
+    creatorIds: [201, 202, 203, 204],
   },
   {
     id: 2,
@@ -41,7 +41,7 @@ export const media = [
 export const creators = [
   { id: 201, name: "John", lastName: "Doe" },
   { id: 202, name: "Jane", lastName: "Smith" },
-  { id: 203, name: "Alice", lastName: "Johnson" },
+  { id: 203, name: "Alice-Clara", lastName: "Johnson-Meyers" },
   { id: 204, name: "Bob", lastName: "Brown" },
 ];
 

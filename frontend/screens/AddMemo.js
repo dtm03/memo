@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Button, Switch } from "react-native";
-import { newMemoStyles } from "../styles/styles";
+import { newMemoStyles } from "../styles/newMemoStyles";
 
-const NewMemo = ({ navigation }) => {
+const AddMemo = ({ navigation }) => {
   const [quote, setQuote] = useState("");
   const [mediaId, setMediaId] = useState("");
   const [creatorIds, setCreatorIds] = useState("");
@@ -46,4 +46,4 @@ const NewMemo = ({ navigation }) => {
   );
 };
 
-export default NewMemo;
+export default AddMemo;

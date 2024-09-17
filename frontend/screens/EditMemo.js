@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Button } from "react-native";
-import { newMemoStyles } from "../styles/styles";
+import { newMemoStyles } from "../styles/commonStyles";
 
 const EditMemo = ({ route, navigation }) => {
     const { memo } = route.params;
