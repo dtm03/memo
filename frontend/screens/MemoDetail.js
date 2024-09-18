@@ -9,36 +9,45 @@ const MemoDetail = ({route}) => {
     const {memo, source} = route.params;
     const navigation = useNavigation();
 
+    const authors = memo.creators ? memo.creators.map(creator => `${creator.name} ${creator.lastName}`).join(", ") : "";
+
     return (
         <View style={memoDetailStyles.container}>
+            <View style={memoDetailStyles.textContainer}>
+                <Text style={memoDetailStyles.quote}>{memo.quote}</Text>
+            </View>
+            <View style={memoDetailStyles.authorContainer}>
+                {authors && <Text style={memoDetailStyles.authors}>{authors}</Text>}
+            </View>
             {memo.media && (
-                <>
-                    <TouchableOpacity onPress={() => Linking.openURL(memo.media.link)}>
-                        <Image source={{uri: memo.media.cover}} style={memoDetailStyles.mediaCover} resizeMode={"contain"}/>
-                    </TouchableOpacity>
-                    <Text style={memoDetailStyles.mediaTitle}>{memo.media.title}</Text>
-                    <Text style={memoDetailStyles.mediaSubtitle}>{memo.media.subtitle}</Text>
-                    <Text style={memoDetailStyles.mediaGenre}>{memo.media.genre}</Text>
-                </>
-            )}
-            <Text style={memoDetailStyles.title}>{memo.quote}</Text>
-            {memo.creators && memo.creators.map((creator) => (
-                <Text key={creator.id} style={memoDetailStyles.content}>
-                    {creator.name + " " + creator.lastName}
-                </Text>
-            ))}
-            {source === "Collection" && (
-                <View style={memoDetailStyles.buttonContainer}>
-                    <TouchableOpacity style={memoDetailStyles.button}
-                                      onPress={() => navigation.navigate("EditMemo", {memo})}>
-                        <Icon name="edit-note" size={30} color={colors.buttonColor}/>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={memoDetailStyles.button}>
-                        <Icon name="delete-outline" size={30} color={colors.buttonColor}/>
-                    </TouchableOpacity>
-                </View>
-            )}
+                <TouchableOpacity onPress={() => Linking.openURL(memo.media.link)}>
+                    <View style={memoDetailStyles.mediaContainer}>
+                        <Image source={{uri: memo.media.cover}} style={memoDetailStyles.mediaCover}
+                               resizeMode="contain"/>
+                        <View style={memoDetailStyles.mediaTextContainer}>
+                            <Text style={memoDetailStyles.mediaTitle}>{memo.media.title}</Text>
+                            <Text style={memoDetailStyles.mediaSubtitle}>{memo.media.subtitle}</Text>
+                            <Text style={memoDetailStyles.mediaGenre}>{memo.media.genre}</Text>
+                        </View>
+                    </View>
 
+                </TouchableOpacity>
+            )}
+            <View style={memoDetailStyles.buttonContainer}>
+                <TouchableOpacity
+                    style={source !== "Collection" ? { opacity: 0 } : null}
+                    onPress={() => navigation.navigate("EditMemo", {memo})}
+                    disabled={source !== "Collection"}
+                >
+                    <Icon name="edit-note" size={30} color={colors.tertiaryColor}/>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={source !== "Collection" ? { opacity: 0 } : null}
+                    disabled={source !== "Collection"}
+                >
+                    <Icon name="delete-outline" size={30} color={colors.tertiaryColor}/>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 };

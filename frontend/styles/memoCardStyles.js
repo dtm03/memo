@@ -25,7 +25,7 @@ export const memoCardStyles = StyleSheet.create({
     },
     divider: {
         height: 1,
-        backgroundColor: colors.buttonColor,
+        backgroundColor: colors.tertiaryColor,
         marginVertical: 10,
     },
     authorContainer: {
@@ -36,11 +36,5 @@ export const memoCardStyles = StyleSheet.create({
     author: {
         fontSize: 14,
         flex: 1,
-    },
-    button: {
-        marginLeft: 10,
-    },
-    transparentButton: {
-        opacity: 0,
     },
 });

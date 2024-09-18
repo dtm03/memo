@@ -1,78 +1,69 @@
 import { StyleSheet, Dimensions } from "react-native";
 import colors from "./colors";
 
-const { width, height } = Dimensions.get("screen");
+const { width } = Dimensions.get("screen");
 
 export const memoDetailStyles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 20,
+        justifyContent: "center",
+        backgroundColor: colors.backgroundColor,
     },
-    quoteAuthorContainer: {
-        marginBottom: 20,
+    mediaContainer: {
+        flexDirection: "row",
+        backgroundColor: colors.secondaryColor,
+        padding: 15,
+        borderRadius: 10,
+    },
+    mediaCover: {
+        width: width / 2.5,
+        height: 200,
+    },
+    mediaTextContainer: {
+        flex: 1,
+        paddingLeft: 10,
+        justifyContent: "center",
+    },
+    mediaTitle: {
+        fontSize: 20,
+        fontWeight: "bold",
+        marginBottom: 5,
+        color: colors.primaryTextColor,
+    },
+    mediaSubtitle: {
+        fontSize: 18,
+        marginBottom: 5,
+        color: colors.primaryTextColor,
+    },
+    mediaGenre: {
+        fontSize: 16,
+        color: colors.primaryTextColor,
+    },
+    textContainer: {
+        backgroundColor: colors.secondaryColor,
+        padding: 30,
+        borderRadius: 15,
+    },
+    authorContainer: {
+        backgroundColor: colors.secondaryColor,
+        padding: 10,
+        borderRadius: 15,
+        marginVertical: 20,
     },
     quote: {
-        fontSize: 18,
-        fontStyle: "italic",
-        textAlign: "center",
-        marginBottom: 10,
-    },
-    author: {
-        fontSize: 16,
-        textAlign: "center",
-    },
-    titleSubtitleCategoryContainer: {
-        marginBottom: 20,
-    },
-    title: {
         fontSize: 24,
         fontWeight: "bold",
         textAlign: "center",
-        marginBottom: 10,
-    },
-    subtitle: {
-        fontSize: 20,
-        textAlign: "center",
-        marginBottom: 10,
-    },
-    category: {
-        fontSize: 18,
-        textAlign: "center",
-    },
-    mediaCover: {
-        width: width,
-        height: 280,  // Adjust height to ensure the full cover is visible
-        alignSelf: "center",
-        marginTop: 20,
-        backgroundColor: colors.backgroundColor,
+        color: colors.primaryTextColor,
     },
     buttonContainer: {
         flexDirection: "row",
         justifyContent: "space-around",
         marginTop: 20,
     },
-    button: {
-        padding: 10,
-    },
-    content: {
+    authors: {
         fontSize: 16,
         textAlign: "center",
-        marginBottom: 10,
-    },
-    mediaTitle: {
-        fontSize: 20,
-        fontWeight: "bold",
-        textAlign: "center",
-        marginBottom: 5,
-    },
-    mediaSubtitle: {
-        fontSize: 18,
-        textAlign: "center",
-        marginBottom: 5,
-    },
-    mediaGenre: {
-        fontSize: 16,
-        textAlign: "center",
-        marginBottom: 10,
     },
 });

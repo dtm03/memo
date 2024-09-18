@@ -1,7 +1,8 @@
 const colors = {
   backgroundColor: "#000000",
   primaryTextColor: "#000000",
-  buttonColor: "#D3D3D3",
+  tertiaryColor: "#D3D3D3",
+  secondaryColor: "#FFFFFF",
 };
 
 export default colors;
