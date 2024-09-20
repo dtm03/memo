@@ -26,8 +26,10 @@ const MemoDetail = ({route}) => {
                                resizeMode="contain"/>
                         <View style={memoDetailStyles.mediaTextContainer}>
                             <Text style={memoDetailStyles.mediaTitle}>{memo.media.title}</Text>
-                            <Text style={memoDetailStyles.mediaSubtitle}>{memo.media.subtitle}</Text>
-                            <Text style={memoDetailStyles.mediaGenre}>{memo.media.genre}</Text>
+                            {memo.media.subtitle && (
+                                <Text style={memoDetailStyles.mediaSubtitle}>{memo.media.subtitle}</Text>)}
+                            <Text style={memoDetailStyles.mediaDate}>{memo.media.date}</Text>
+                            <Text style={memoDetailStyles.mediaCategory}>{memo.media.category}</Text>
                         </View>
                     </View>
 
@@ -35,14 +37,14 @@ const MemoDetail = ({route}) => {
             )}
             <View style={memoDetailStyles.buttonContainer}>
                 <TouchableOpacity
-                    style={source !== "Collection" ? { opacity: 0 } : null}
+                    style={source !== "Collection" ? {opacity: 0} : null}
                     onPress={() => navigation.navigate("EditMemo", {memo})}
                     disabled={source !== "Collection"}
                 >
                     <Icon name="edit-note" size={30} color={colors.tertiaryColor}/>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={source !== "Collection" ? { opacity: 0 } : null}
+                    style={source !== "Collection" ? {opacity: 0} : null}
                     disabled={source !== "Collection"}
                 >
                     <Icon name="delete-outline" size={30} color={colors.tertiaryColor}/>

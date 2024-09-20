@@ -26,19 +26,23 @@ export const memoDetailStyles = StyleSheet.create({
         justifyContent: "center",
     },
     mediaTitle: {
-        fontSize: 20,
+        fontSize: 26,
         fontWeight: "bold",
-        marginBottom: 5,
         color: colors.primaryTextColor,
     },
     mediaSubtitle: {
-        fontSize: 18,
-        marginBottom: 5,
-        color: colors.primaryTextColor,
-    },
-    mediaGenre: {
         fontSize: 16,
         color: colors.primaryTextColor,
+        marginBottom: 10,
+    },
+    mediaDate: {
+        fontSize: 14,
+        color: colors.primaryTextColor,
+        marginBottom: 10,
+    },
+    mediaCategory: {
+        fontSize: 14,
+        color: colors.tertiaryColor,
     },
     textContainer: {
         backgroundColor: colors.secondaryColor,
@@ -53,9 +57,10 @@ export const memoDetailStyles = StyleSheet.create({
     },
     quote: {
         fontSize: 24,
-        fontWeight: "bold",
         textAlign: "center",
         color: colors.primaryTextColor,
+        fontFamily: "LibreBaskerville_700Bold",
+        lineHeight: 30,
     },
     buttonContainer: {
         flexDirection: "row",

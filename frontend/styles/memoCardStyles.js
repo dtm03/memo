@@ -7,7 +7,6 @@ export const memoCardStyles = StyleSheet.create({
     card: {
         backgroundColor: "white",
         paddingBottom: 10,
-        paddingTop: 15,
         margin: 10,
         borderRadius: 15,
         width: width - 30,
@@ -15,18 +14,19 @@ export const memoCardStyles = StyleSheet.create({
     textContainer: {
         justifyContent: "center",
         alignItems: "center",
+        padding: 30,
         flex: 1,
     },
     text: {
-        fontSize: 18,
-        fontWeight: "bold",
+        fontSize: 22,
         textAlign: "center",
-        marginHorizontal: 15,
+        lineHeight: 30,
+        fontFamily: 'LibreBaskerville_700Bold',
     },
     divider: {
         height: 1,
         backgroundColor: colors.tertiaryColor,
-        marginVertical: 10,
+        marginBottom: 10,
     },
     authorContainer: {
         flexDirection: "row",

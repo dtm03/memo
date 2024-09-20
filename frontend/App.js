@@ -4,22 +4,21 @@ import {createStackNavigator} from "@react-navigation/stack";
 import Menu from "./screens/Menu";
 import MemoDetail from "./screens/MemoDetail";
 import EditMemo from "./screens/EditMemo";
-// import {useFonts, Mulish_400Regular, Mulish_600SemiBold, Mulish_700Bold, Mulish_800ExtraBold} from "@expo-google-fonts/mulish";
+import { useFonts, LibreBaskerville_400Regular, LibreBaskerville_700Bold, LibreBaskerville_400Regular_Italic } from '@expo-google-fonts/libre-baskerville';
 
 const Stack = createStackNavigator();
 
 const App = () => {
 
-    // let [fontsLoaded] = useFonts({
-    //     Mulish: Mulish_400Regular,
-    //     MulishSemiBold: Mulish_600SemiBold,
-    //     MulishBold: Mulish_700Bold,
-    //     MulishExtraBold: Mulish_800ExtraBold
-    // });
-    //
-    // if (!fontsLoaded) {
-    //     return null;
-    // }
+    let [fontsLoaded] = useFonts({
+        LibreBaskerville_400Regular,
+        LibreBaskerville_700Bold,
+        LibreBaskerville_400Regular_Italic,
+    });
+
+    if (!fontsLoaded) {
+        return null;
+    }
 
     return (
         <NavigationContainer>
