@@ -7,11 +7,11 @@ export const commonStyles = StyleSheet.create({
     listContainer: {
         flex: 1,
         alignItems: "center",
-        marginTop: 70,
-        paddingBottom: 100,
+        marginTop: 85,
+        paddingBottom: 85,
         height,
         width,
-        backgroundColor: colors.backgroundColor,
+        backgroundColor: colors.maybe,
     }
 });
 

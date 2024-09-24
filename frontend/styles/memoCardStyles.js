@@ -7,7 +7,7 @@ export const memoCardStyles = StyleSheet.create({
     card: {
         backgroundColor: "white",
         paddingBottom: 10,
-        margin: 10,
+        marginBottom: 20,
         borderRadius: 15,
         width: width - 30,
     },

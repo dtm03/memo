@@ -1,12 +1,12 @@
 import React from "react";
 import ListContainer from "../components/ListContainer";
 import MemoCard from "../components/MemoCard";
-import {data, getCreatorsByIds, getMediaById} from "../api/data";
+import {quotes, getCreatorsByIds, getMediaById} from "../api/quotes";
 
 const Inspiration = () => {
     return (
             <ListContainer
-                data={data}
+                data={quotes}
                 renderItem={({item}) => (
                     <MemoCard
                         source="Inspiration"

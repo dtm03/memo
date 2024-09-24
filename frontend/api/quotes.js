@@ -1,6 +1,8 @@
 // Add fields like notes, season, episode, page
+// Media Instance Tables that link to the media table for each?
+// page, season, episode
 
-export const data = [
+export const quotes = [
     {
         id: 1,
         quote: "This is an inspirational quote. A very long quote though, so we might actually need two lines.",
@@ -49,7 +51,7 @@ export const media = [
     {
         id: 101,
         title: "Inspiration BookDetail",
-        subtitle: "Subtitle of the book",
+        subtitle_album: "Subtitle of the book",
         date: "2015",
         category: "Book",
         link: "https://www.amazon.de/Little-Life-Shortlisted-Booker-Prize/dp/1447294831/ref=asc_df_1447294831?tag=bingshoppin0b-21&linkCode=df0&hvadid=80470564161838&hvnetw=o&hvqmt=e&hvbmt=be&hvdev=c&hvlocint=&hvlocphy=&hvtargid=pla-4584070139220793&psc=11",
@@ -67,7 +69,6 @@ export const media = [
     {
         id: 103,
         title: "Lion King",
-        subtitle: "Subtitle of the book",
         date: "1994",
         category: "Movie",
         link: "https://www.amazon.de/K%C3%B6nig-L%C3%B6wen-Teil-DVDs/dp/B07GJ4JRHD/ref=sr_1_1_sspa?crid=1LI3OFHG51PC0&dib=eyJ2IjoiMSJ9.hlgeyav3ZTjdz6Jjv-nNdpn4McCE81VasAEx-1buKQk-MT-Hzaca0GFonth9fsFb-D3dovUQMQxGedDf-jM4ZfLr1C9UAPhfvceD9OdDKR2lrVUziUO7Y3uK7Mx6iXVKRz0FFM6z1tdWbAVHRhBQosmVBqcD68EL6KZogqeGw5E-KUm9LEGr4s5tqBOFp77M8GnFYnG68T0bvNES3wM3KJbu6q1-Q9ouEB3s5-lM0jo.oxJ50JA8oU-G33_5CxWHprQzqNOvFlK_6Jsk-NGkEs8&dib_tag=se&keywords=lion+king+movie&qid=1726721702&sprefix=lion+king+movie%2Caps%2C103&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1",
@@ -76,6 +77,7 @@ export const media = [
     {
         id: 104,
         title: "Closer",
+        subtitle_album: "Memories...Do Not Open",
         date: "2016",
         category: "Song",
         cover: "https://images.genius.com/35f26a5429926eb9cf3ecd89e9b3d79a.1000x1000x1.jpg",
@@ -107,6 +109,13 @@ export const creators = [
     {id: 206, name: "The Chainsmokers", lastName: ""},
     {id: 207, name: "Martin Luther", lastName: "King"},
 ];
+
+export const users = [
+    { id: 300 },
+    { id: 301 },
+    { id: 302 },
+    { id: 303 },
+]
 
 export const getCreatorsByIds = (ids) => {
     return creators.filter(creator => ids.includes(creator.id));

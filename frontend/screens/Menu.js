@@ -36,8 +36,8 @@ export default function Menu() {
         });
     }, []);
     return (
-        <View style={{backgroundColor: colors.backgroundColor}}>
-            <StatusBar hidden />
+        <View style={{backgroundColor: colors.maybe}}>
+            <StatusBar backgroundColor={colors.maybe} barStyle="light-content" />
             <Animated.FlatList
                 ref={ref}
                 data={data}

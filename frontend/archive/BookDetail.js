@@ -2,7 +2,7 @@ import React from "react";
 import {View, Text, StyleSheet, Image} from "react-native";
 import ListContainer from "../components/ListContainer";
 import MemoCardBook from "./MemoCardBook";
-import {data, getCreatorsByIds, getMediaById} from "../api/data";
+import {quotes, getCreatorsByIds, getMediaById} from "../api/quotes";
 
 const BookDetail = ({route}) => {
     const {book} = route.params;
@@ -14,7 +14,7 @@ const BookDetail = ({route}) => {
             <Text style={styles.author}>{book.author}</Text>
             <Text style={styles.description}>{book.description}</Text>
             <ListContainer
-                data={data}
+                data={quotes}
                 renderItem={({item}) => (
                     <MemoCardBook
                         memo={{
