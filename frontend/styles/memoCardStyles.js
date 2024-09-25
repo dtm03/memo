@@ -17,7 +17,7 @@ export const memoCardStyles = StyleSheet.create({
         padding: 30,
         flex: 1,
     },
-    text: {
+    quote: {
         fontSize: 22,
         textAlign: "center",
         lineHeight: 30,

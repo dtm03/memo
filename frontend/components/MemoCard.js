@@ -14,7 +14,7 @@ const MemoCard = ({source, memo}) => {
         <TouchableOpacity onPress={() => navigation.navigate("Memo", {source, memo})}>
             <View style={[memoCardStyles.card, {height: width}]}>
                 <View style={memoCardStyles.textContainer}>
-                    <Text style={memoCardStyles.text}>{memo.quote}</Text>
+                    <Text style={[ memoCardStyles.quote, { fontSize: memo.quote.length > 210 ? 16 : 24 } ]}>{memo.quote}</Text>
                 </View>
                 <View style={memoCardStyles.divider}/>
                 <View style={memoCardStyles.authorContainer}>

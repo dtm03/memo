@@ -29,10 +29,12 @@ export const memoDetailStyles = StyleSheet.create({
         fontSize: 26,
         fontWeight: "bold",
         color: colors.primaryTextColor,
+        marginBottom: 5,
     },
     mediaSubtitle: {
         fontSize: 16,
         color: colors.primaryTextColor,
+        marginBottom: 5,
     },
     mediaDate: {
         fontSize: 14,
@@ -43,7 +45,7 @@ export const memoDetailStyles = StyleSheet.create({
         fontSize: 14,
         color: colors.tertiaryColor,
     },
-    textContainer: {
+    quoteContainer: {
         backgroundColor: colors.secondaryColor,
         padding: 30,
         borderRadius: 15,
@@ -55,7 +57,6 @@ export const memoDetailStyles = StyleSheet.create({
         marginVertical: 20,
     },
     quote: {
-        fontSize: 24,
         textAlign: "center",
         color: colors.primaryTextColor,
         fontFamily: "LibreBaskerville_700Bold",

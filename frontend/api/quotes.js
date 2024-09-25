@@ -1,50 +1,64 @@
 // Add fields like notes, season, episode, page
 // Media Instance Tables that link to the media table for each?
 // page, season, episode
+// Icons on detail page try out, add and edit page
 
 export const quotes = [
     {
         id: 1,
-        quote: "This is an inspirational quote. A very long quote though, so we might actually need two lines.",
+        quote: "This is an inspirational quote. A very long quote though, so we might actually need two lines. Now we have two lines. I mean, we could have three lines, but that would be too much. So let's stick with two lines. So now we can add something right? How much though. Not too much. On",
         mediaId: 101,
         creatorIds: [201, 202, 203, 204],
+        userIds: [300, 301],
+    },
+    {
+        id: 8,
+        quote: "This is an inspirational quote. A very long quote though, so we might actually need two lines. Now we have two lines. I mean, we could have three lines, but that would be too much.",
+        mediaId: 101,
+        creatorIds: [201, 202, 203, 204],
+        userIds: [300, 301],
     },
     {
         id: 2,
         quote: "Another inspirational quote.",
         mediaId: 102,
         creatorIds: [203, 204],
+        userIds: [302],
     },
     {
         id: 3,
         quote: "Another inspirational quote.",
         mediaId: 102,
         creatorIds: [203, 204],
+        userIds: [303],
     },
     {
         id: 4,
         quote: "Pull me closer in the backseat of your rover.",
         mediaId: 104,
         creatorIds: [206],
+        userIds: [300],
     },
     {
         id: 5,
         quote: "I just can't wait to be king.",
         mediaId: 103,
         creatorIds: [205],
+        userIds: [301],
     },
     {
         id: 6,
         quote: "Name of your sextape",
         mediaId: 105,
         creatorIds: [205],
+        userIds: [302, 303],
     },
     {
         id: 7,
         quote: "I have a dream.",
-        mediaId: 106,
         creatorIds: [207],
-    }
+        userIds: [300, 301, 302, 303],
+    },
 ];
 
 export const media = [
