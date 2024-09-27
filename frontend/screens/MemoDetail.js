@@ -16,9 +16,24 @@ const MemoDetail = ({ route }) => {
         setIsVisible(!isVisible);
     };
 
+    const getCategoryIcon = (category) => {
+        switch (category) {
+            case "Movie":
+                return <Icon name="movie" size={30} color={colors.tertiaryColor} />;
+            case "Song":
+                return <Icon name="library-music" size={30} color={colors.tertiaryColor} />;
+            case "Book":
+                return <Icon name="menu-book" size={30} color={colors.tertiaryColor} />;
+            case "TV Show":
+                return <Icon name="tv" size={30} color={colors.tertiaryColor} />;
+            default:
+                return <Icon name="insert-drive-file" size={30} color={colors.tertiaryColor} />;
+        }
+    };
+
     return (
         <SafeAreaView style={memoDetailStyles.container}>
-            <StatusBar backgroundColor={colors.maybe} barStyle="light-content" />
+            <StatusBar backgroundColor={colors.primaryColor} barStyle="light-content" />
             <View style={memoDetailStyles.quoteContainer}>
                 <Text style={[memoDetailStyles.quote, { fontSize: memo.quote.length > 210 ? 18 : 24 }]}>{memo.quote}</Text>
             </View>
@@ -35,7 +50,7 @@ const MemoDetail = ({ route }) => {
                                 <Text style={memoDetailStyles.mediaSubtitle}>{memo.media.subtitle_album}</Text>
                             )}
                             <Text style={memoDetailStyles.mediaDate}>{memo.media.date}</Text>
-                            <Text style={memoDetailStyles.mediaCategory}>{memo.media.category}</Text>
+                            {getCategoryIcon(memo.media.category)}
                         </View>
                     </View>
                 </TouchableOpacity>
@@ -49,7 +64,7 @@ const MemoDetail = ({ route }) => {
                         <Icon name="share" size={30} color={colors.tertiaryColor} />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => navigation.navigate("EditMemo", { memo })}>
-                        <Icon name="edit-note" size={30} color={colors.tertiaryColor} />
+                        <Icon name="mode-edit" size={30} color={colors.tertiaryColor} />
                     </TouchableOpacity>
                     <TouchableOpacity>
                         <Icon name="delete-outline" size={30} color={colors.tertiaryColor} />

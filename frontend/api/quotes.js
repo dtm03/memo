@@ -125,10 +125,10 @@ export const creators = [
 ];
 
 export const users = [
-    { id: 300 },
-    { id: 301 },
-    { id: 302 },
-    { id: 303 },
+    {id: 300},
+    {id: 301},
+    {id: 302},
+    {id: 303},
 ]
 
 export const getCreatorsByIds = (ids) => {

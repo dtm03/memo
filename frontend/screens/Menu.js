@@ -8,16 +8,16 @@ import {
 import Inspiration from "./Inspiration";
 import Collection from "./Collection";
 import Tabs from "../components/home/Tabs";
-import AddMemo from "./AddMemo";
+import NewMemo from "./NewMemo";
 import Icon from "react-native-vector-icons/FontAwesome";
 import colors from "../styles/colors";
 
-const { width } = Dimensions.get("window");
+const { width } = Dimensions.get("screen");
 
 const tabs = {
     Inspo: <Inspiration />,
     Collection: <Collection />,
-    "plus": <AddMemo />,
+    "plus": <NewMemo />,
 };
 
 const data = Object.keys(tabs).map((i) => ({
@@ -36,8 +36,8 @@ export default function Menu() {
         });
     }, []);
     return (
-        <View style={{backgroundColor: colors.maybe}}>
-            <StatusBar backgroundColor={colors.maybe} barStyle="light-content" />
+        <View style={{backgroundColor: colors.primaryColor}}>
+            <StatusBar backgroundColor={colors.primaryColor} barStyle="light-content" />
             <Animated.FlatList
                 ref={ref}
                 data={data}

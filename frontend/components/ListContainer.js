@@ -4,7 +4,7 @@ import { commonStyles } from "../styles/commonStyles";
 
 const ListContainer = ({ data, renderItem }) => {
   return (
-    <View style={commonStyles.listContainer}>
+    <View style={commonStyles.container}>
       <FlatList
         data={data}
         renderItem={renderItem}

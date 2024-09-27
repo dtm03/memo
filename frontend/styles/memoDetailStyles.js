@@ -8,7 +8,7 @@ export const memoDetailStyles = StyleSheet.create({
         flex: 1,
         padding: 20,
         justifyContent: "center",
-        backgroundColor: colors.maybe,
+        backgroundColor: colors.primaryColor,
     },
     mediaContainer: {
         flexDirection: "row",
@@ -38,7 +38,7 @@ export const memoDetailStyles = StyleSheet.create({
     },
     mediaDate: {
         fontSize: 14,
-        color: colors.tertiaryColor,
+        color: colors.primaryTextColor,
         marginBottom: 10,
     },
     mediaCategory: {
