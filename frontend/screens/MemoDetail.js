@@ -63,7 +63,7 @@ const MemoDetail = ({ route }) => {
                     <TouchableOpacity>
                         <Icon name="share" size={30} color={colors.tertiaryColor} />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate("EditMemo", { memo })}>
+                    <TouchableOpacity onPress={() => navigation.navigate("EditMemo", { quotes: memo.quote })}>
                         <Icon name="mode-edit" size={30} color={colors.tertiaryColor} />
                     </TouchableOpacity>
                     <TouchableOpacity>

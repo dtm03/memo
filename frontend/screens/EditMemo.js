@@ -1,45 +1,30 @@
-import React, { useState } from "react";
-import { View, Text, TextInput, Button } from "react-native";
-import { newMemoStyles } from "../styles/newMemoStyles";
+import React, {useState} from "react";
+import {View, TextInput, Text, TouchableOpacity} from "react-native";
+import {newMemoStyles} from "../styles/newMemoStyles";
+import colors from "../styles/colors";
+import {memoDetailStyles} from "../styles/memoDetailStyles";
+import {editMemoStyles} from "../styles/editMemoStyles";
 
-const EditMemo = ({ route, navigation }) => {
-    const { memo } = route.params;
-    const [quote, setQuote] = useState(memo.quote);
-    const [mediaId, setMediaId] = useState(memo.mediaId);
-    const [creatorIds, setCreatorIds] = useState(memo.creatorIds.join(", "));
-
-    const handleSave = () => {
-        // Save the updated memo
-        navigation.goBack();
-    };
+const EditMemo = ({route}) => {
+    const {quote} = route.params;
+    const [newQuote, setNewQuote] = useState(quote);
 
     return (
-        <View style={newMemoStyles.container}>
-            <Text style={newMemoStyles.label}>Quote:</Text>
+        <View style={editMemoStyles.container}>
+            <View style={memoDetailStyles.quoteContainer}>
+                <Text style={[memoDetailStyles.quote, {fontSize: 24}]}>{newQuote}</Text>
+            </View>
             <TextInput
                 style={newMemoStyles.input}
-                value={quote}
-                onChangeText={setQuote}
-                placeholder="Enter quote"
-                maxLength={100}
+                value={newQuote}
+                placeholderTextColor={colors.tertiaryColor}
+                onChangeText={setNewQuote}
+                placeholder={newQuote}
+                maxLength={280}
             />
-            <Text style={newMemoStyles.label}>Media ID:</Text>
-            <TextInput
-                style={newMemoStyles.input}
-                value={mediaId}
-                onChangeText={setMediaId}
-                placeholder="Enter media ID"
-                maxLength={50}
-            />
-            <Text style={newMemoStyles.label}>Creator IDs (comma separated):</Text>
-            <TextInput
-                style={newMemoStyles.input}
-                value={creatorIds}
-                onChangeText={setCreatorIds}
-                placeholder="Enter creator IDs"
-                maxLength={50}
-            />
-            <Button title="Save" onPress={handleSave} />
+            <TouchableOpacity style={editMemoStyles.button}>
+                <Text style={newMemoStyles.buttonText}>Save memo</Text>
+            </TouchableOpacity>
         </View>
     );
 };

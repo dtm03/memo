@@ -11,10 +11,31 @@ export const newMemoStyles = StyleSheet.create({
         backgroundColor: colors.secondaryColor,
         width: width - 30,
         height: 46,
+        fontSize: 16,
     },
-    buttonStyle: {
+    button: {
+        flex: 1,
         backgroundColor: colors.secondaryColor,
+        borderRadius: 23,
+        height: 46,
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    switchSelector: {
         width: width - 30,
-        borderRadius: 150,
+        marginBottom: 20,
+        height: 46,
+        backgroundColor: "green",
+    },
+    buttonText: {
+        color: colors.primaryColor,
+        fontSize: 16,
+        lineHeight: 46,
+        fontWeight: "bold",
+    },
+    buttonContainer: {
+        flexDirection: "row",
+        width: width - 30,
+        alignItems: "center",
     },
 });

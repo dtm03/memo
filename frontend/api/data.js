@@ -1,9 +1,4 @@
-// Add fields like notes, season, episode, page
-// Media Instance Tables that link to the media table for each?
-// page, season, episode
-// Icons on detail page try out, add and edit page
-
-export const quotes = [
+export const data = [
     {
         id: 1,
         quote: "This is an inspirational quote. A very long quote though, so we might actually need two lines. Now we have two lines. I mean, we could have three lines, but that would be too much. So let's stick with two lines. So now we can add something right? How much though. Not too much. On",
