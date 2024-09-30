@@ -4,6 +4,16 @@ import colors from "./colors";
 const {width, height} = Dimensions.get("screen");
 
 export const newMemoStyles = StyleSheet.create({
+    quoteInput: {
+        textAlignVertical: "top",
+        padding: 23,
+        borderRadius: 15,
+        marginBottom: 20,
+        backgroundColor: colors.secondaryColor,
+        width: width - 30,
+        height: 414,
+        fontSize: 16,
+    },
     input: {
         paddingHorizontal: 23,
         borderRadius: 23,

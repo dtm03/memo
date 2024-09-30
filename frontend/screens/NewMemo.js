@@ -28,7 +28,7 @@ const NewMemo = ({navigation}) => {
                 onSelect={(value) => setSelectedCategory(value)}
             />
             <TextInput
-                style={newMemoStyles.input}
+                style={newMemoStyles.quoteInput}
                 value={quote}
                 placeholderTextColor={colors.tertiaryColor}
                 onChangeText={setQuote}

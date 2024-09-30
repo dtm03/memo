@@ -26,4 +26,14 @@ export const editMemoStyles = StyleSheet.create({
         lineHeight: 46,
         fontWeight: "bold",
     },
+    quoteInput: {
+        textAlignVertical: "top",
+        padding: 23,
+        borderRadius: 15,
+        marginBottom: 20,
+        backgroundColor: colors.secondaryColor,
+        width: width - 30,
+        // height: 414,
+        fontSize: 16,
+    }
 });
