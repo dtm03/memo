@@ -5,19 +5,19 @@ import {data, getCreatorsByIds, getMediaById} from "../api/data";
 
 const Inspiration = () => {
     return (
-            <ListContainer
-                data={data}
-                renderItem={({item}) => (
-                    <MemoCard
-                        source="Inspiration"
-                        memo={{
-                            ...item,
-                            creators: getCreatorsByIds(item.creatorIds),
-                            media: getMediaById(item.mediaId)
-                        }}
-                    />
-                )}
-            />
+        <ListContainer
+            data={data}
+            renderItem={({item}) => (
+                <MemoCard
+                    source="Inspiration"
+                    memo={{
+                        ...item,
+                        creators: getCreatorsByIds(item.creatorIds),
+                        media: getMediaById(item.mediaId)
+                    }}
+                />
+            )}
+        />
     );
 };
 

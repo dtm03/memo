@@ -1,11 +1,10 @@
-import {Dimensions, StyleSheet} from "react-native";
-
-const {width, height} = Dimensions.get("screen");
+import {StyleSheet} from "react-native";
+import { SCREEN_WIDTH } from "../utils/constants";
 
 export const switchSelectorStyles = StyleSheet.create({
     switchContainer: {
         flexDirection: 'row',
-        width: width - 30,
+        width: SCREEN_WIDTH - 30,
         backgroundColor: 'white',
         borderRadius: 23,
         height: 46,

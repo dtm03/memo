@@ -1,7 +1,7 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet } from "react-native";
 import colors from "./colors";
+import { SCREEN_WIDTH } from "../utils/constants";
 
-const { width } = Dimensions.get("screen");
 
 export const memoDetailStyles = StyleSheet.create({
     container: {
@@ -17,7 +17,7 @@ export const memoDetailStyles = StyleSheet.create({
         borderRadius: 10,
     },
     mediaCover: {
-        width: width / 2.5,
+        width: SCREEN_WIDTH / 2.5,
         height: 200,
     },
     mediaTextContainer: {

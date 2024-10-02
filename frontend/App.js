@@ -3,7 +3,7 @@ import {NavigationContainer} from "@react-navigation/native";
 import {createStackNavigator} from "@react-navigation/stack";
 import Menu from "./screens/Menu";
 import MemoDetail from "./screens/MemoDetail";
-import EditMemo from "./screens/EditMemo";
+import EditMemo from "./archive/EditMemo";
 import { useFonts, LibreBaskerville_400Regular, LibreBaskerville_700Bold, LibreBaskerville_400Regular_Italic } from '@expo-google-fonts/libre-baskerville';
 
 const Stack = createStackNavigator();

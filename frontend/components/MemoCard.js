@@ -1,20 +1,21 @@
 import React from "react";
-import {View, Text, TouchableOpacity, Dimensions} from "react-native";
+import {View, Text, TouchableOpacity} from "react-native";
 import {useNavigation} from "@react-navigation/native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import {memoCardStyles} from "../styles/memoCardStyles";
 import colors from "../styles/colors";
-
-const {width} = Dimensions.get("screen");
+import {SCREEN_WIDTH} from "../utils/constants";
 
 const MemoCard = ({source, memo}) => {
     const navigation = useNavigation();
 
     return (
         <TouchableOpacity onPress={() => navigation.navigate("Memo", {source, memo})}>
-            <View style={[memoCardStyles.card, {height: width}]}>
+            <View style={[memoCardStyles.card, {height: SCREEN_WIDTH}]}>
                 <View style={memoCardStyles.textContainer}>
-                    <Text style={[ memoCardStyles.quote, { fontSize: memo.quote.length > 210 ? 16 : 24 } ]}>{memo.quote}</Text>
+                    <Text
+                        style={[memoCardStyles.quote, {fontSize: memo.quote.length > 210 ? 16 : 24}]}>{memo.quote}
+                    </Text>
                 </View>
                 <View style={memoCardStyles.divider}/>
                 <View style={memoCardStyles.authorContainer}>

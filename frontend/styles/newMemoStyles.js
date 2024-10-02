@@ -1,16 +1,25 @@
-import {Dimensions, StyleSheet} from "react-native";
+import {StyleSheet} from "react-native";
 import colors from "./colors";
+import {SCREEN_HEIGHT, SCREEN_WIDTH} from "../utils/constants";
 
-const {width, height} = Dimensions.get("screen");
 
 export const newMemoStyles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: "center",
+        marginTop: 50,
+        paddingBottom: 85,
+        height: SCREEN_HEIGHT,
+        width: SCREEN_WIDTH,
+        backgroundColor: colors.primaryColor,
+    },
     quoteInput: {
         textAlignVertical: "top",
         padding: 23,
         borderRadius: 15,
         marginBottom: 20,
         backgroundColor: colors.secondaryColor,
-        width: width - 30,
+        width: SCREEN_WIDTH - 30,
         height: 414,
         fontSize: 16,
     },
@@ -19,7 +28,7 @@ export const newMemoStyles = StyleSheet.create({
         borderRadius: 23,
         marginBottom: 20,
         backgroundColor: colors.secondaryColor,
-        width: width - 30,
+        width: SCREEN_WIDTH - 30,
         height: 46,
         fontSize: 16,
     },
@@ -32,7 +41,7 @@ export const newMemoStyles = StyleSheet.create({
         alignItems: "center",
     },
     switchSelector: {
-        width: width - 30,
+        width: SCREEN_WIDTH - 30,
         marginBottom: 20,
         height: 46,
         backgroundColor: "green",
@@ -45,7 +54,7 @@ export const newMemoStyles = StyleSheet.create({
     },
     buttonContainer: {
         flexDirection: "row",
-        width: width - 30,
+        width: SCREEN_WIDTH - 30,
         alignItems: "center",
     },
 });

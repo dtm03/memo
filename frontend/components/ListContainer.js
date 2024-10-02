@@ -1,17 +1,19 @@
 import React from "react";
-import { FlatList, View } from "react-native";
-import { commonStyles } from "../styles/commonStyles";
+import {FlatList, StatusBar, View} from "react-native";
+import colors from "../styles/colors";
+import {newMemoStyles} from "../styles/newMemoStyles";
 
-const ListContainer = ({ data, renderItem }) => {
-  return (
-    <View style={commonStyles.container}>
-      <FlatList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
-      />
-    </View>
-  );
+const ListContainer = ({data, renderItem}) => {
+    return (
+        <View style={newMemoStyles.container}>
+            <StatusBar backgroundColor={colors.primaryColor} barStyle="light-content"/>
+            <FlatList
+                data={data}
+                renderItem={renderItem}
+                keyExtractor={(item) => item.id.toString()}
+            />
+        </View>
+    );
 };
 
 export default ListContainer;

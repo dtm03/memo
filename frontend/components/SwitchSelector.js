@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { View, TouchableOpacity } from 'react-native';
-import { switchSelectorStyles } from '../styles/switchSelectorStyles';
+import React, {useState} from 'react';
+import {View, TouchableOpacity} from 'react-native';
+import {switchSelectorStyles} from '../styles/switchSelectorStyles';
 import colors from "../styles/colors";
 
-const SwitchSelector = ({ options, onSelect }) => {
+const SwitchSelector = ({options, onSelect}) => {
     const [selectedOption, setSelectedOption] = useState(options[0]);
 
     const handleSwitch = (option) => {
@@ -18,7 +18,7 @@ const SwitchSelector = ({ options, onSelect }) => {
                     key={index}
                     style={[
                         switchSelectorStyles.option,
-                        { backgroundColor: selectedOption.value === option.value ? colors.primaryColor : colors.secondaryColor },
+                        {backgroundColor: selectedOption.value === option.value ? colors.primaryColor : colors.secondaryColor},
                     ]}
                     onPress={() => handleSwitch(option)}
                 >

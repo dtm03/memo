@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import {
     View,
@@ -36,8 +35,7 @@ export default function Menu() {
         });
     }, []);
     return (
-        <View style={{backgroundColor: colors.primaryColor}}>
-            <StatusBar backgroundColor={colors.primaryColor} barStyle="light-content" />
+        <View style={{backgroundColor: colors.primaryColor, paddingTop: 15}}>
             <Animated.FlatList
                 ref={ref}
                 data={data}

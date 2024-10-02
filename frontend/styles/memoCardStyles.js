@@ -1,7 +1,6 @@
-import {Dimensions, StyleSheet} from "react-native";
+import {StyleSheet} from "react-native";
 import colors from "./colors";
-
-const {width, height} = Dimensions.get("screen");
+import { SCREEN_WIDTH } from "../utils/constants";
 
 export const memoCardStyles = StyleSheet.create({
     card: {
@@ -9,7 +8,7 @@ export const memoCardStyles = StyleSheet.create({
         paddingBottom: 10,
         marginBottom: 20,
         borderRadius: 15,
-        width: width - 30,
+        width: SCREEN_WIDTH - 30,
     },
     textContainer: {
         justifyContent: "center",

@@ -95,7 +95,7 @@ export const media = [
         id: 105,
         title: "Brooklyn Nine-Nine",
         date: "2013",
-        category: "TV Show",
+        category: "Series",
         link: "https://www.amazon.de/Brooklyn-Nine-Nine-Staffel-Andy-Samberg/dp/B07R5Z7V9N/ref=sr_1_1?crid=1Q8ZJX5Q5GZ4R&dchild=1&keywords=brooklyn+nine+nine+staffel+1&qid=1626721856&sprefix=brooklyn+nine+nine+staffel+%2Caps%2C103&sr=8-1",
         cover: "https://m.media-amazon.com/images/I/91CQK2QyVNL._AC_SL1500_.jpg",
     },

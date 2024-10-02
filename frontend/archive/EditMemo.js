@@ -3,7 +3,7 @@ import { View, TextInput, Text, TouchableOpacity } from "react-native";
 import { newMemoStyles } from "../styles/newMemoStyles";
 import colors from "../styles/colors";
 import { memoDetailStyles } from "../styles/memoDetailStyles";
-import { editMemoStyles } from "../styles/editMemoStyles";
+import { editMemoStyles } from "./editMemoStyles";
 
 const EditMemo = ({ route }) => {
     const { quote } = route.params;

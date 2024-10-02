@@ -1,5 +1,5 @@
 import {StyleSheet, Dimensions} from "react-native";
-import colors from "./colors";
+import colors from "../styles/colors";
 
 const {width, height} = Dimensions.get("screen");
 
@@ -33,7 +33,6 @@ export const editMemoStyles = StyleSheet.create({
         marginBottom: 20,
         backgroundColor: colors.secondaryColor,
         width: width - 30,
-        // height: 414,
         fontSize: 16,
     }
 });
