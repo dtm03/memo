@@ -1,19 +1,18 @@
 import React from "react";
 import ListContainer from "../components/ListContainer";
 import MemoCard from "../components/MemoCard";
-import {data, getCreatorsByIds, getMediaById} from "../api/data";
+import {utils, getCreatorsByIds} from "../api/utils";
 
 const Inspiration = () => {
     return (
         <ListContainer
-            data={data}
+            data={utils}
             renderItem={({item}) => (
                 <MemoCard
                     source="Inspiration"
                     memo={{
                         ...item,
                         creators: getCreatorsByIds(item.creatorIds),
-                        media: getMediaById(item.mediaId)
                     }}
                 />
             )}

@@ -11,6 +11,7 @@ export const memoDetailStyles = StyleSheet.create({
         backgroundColor: colors.primaryColor,
     },
     mediaContainer: {
+        alignItems: "center",
         flexDirection: "row",
         backgroundColor: colors.secondaryColor,
         padding: 15,

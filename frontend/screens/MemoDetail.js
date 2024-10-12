@@ -14,12 +14,14 @@ import { useNavigation } from "@react-navigation/native";
 import colors from "../styles/colors";
 import { getCategoryIcon } from "../utils/helpers";
 import ButtonContainer from "../components/ButtonContainer";
+import { fetchMediaDetails } from '../api/utils';
 
 const MemoDetail = ({ route }) => {
     const { memo, source } = route.params;
     const navigation = useNavigation();
     const [newQuote, setNewQuote] = useState(memo.quote);
     const [isEditable, setIsEditable] = useState(false);
+    const [media, setMedia] = useState(null);
     const textInputRef = useRef(null);
     const authors = memo.creators ? memo.creators.map(creator => `${creator.name} ${creator.lastName}`).join(", ") : "";
 
@@ -29,6 +31,18 @@ const MemoDetail = ({ route }) => {
             textInputRef.current.setSelection(newQuote.length);
         }
     }, [isEditable]);
+
+    useEffect(() => {
+        const fetchAndSetMediaDetails = async (mediaId) => {
+            try {
+                const mediaDetails = await fetchMediaDetails(mediaId);
+                setMedia(mediaDetails);
+            } catch (error) {
+                console.error('Error fetching media details:', error);
+            }
+        };
+        fetchAndSetMediaDetails(memo.mediaId);
+    }, [memo.mediaId]);
 
     return (
         <SafeAreaView style={memoDetailStyles.container}>
@@ -46,17 +60,17 @@ const MemoDetail = ({ route }) => {
             <View style={memoDetailStyles.authorContainer}>
                 {authors && <Text style={memoDetailStyles.authors}>{authors}</Text>}
             </View>
-            {memo.media && (
-                <TouchableOpacity onPress={() => Linking.openURL(memo.media.link)}>
+            {media && (
+                <TouchableOpacity onPress={() => Linking.openURL(media.link)}>
                     <View style={memoDetailStyles.mediaContainer}>
-                        <Image source={{ uri: memo.media.cover }} style={memoDetailStyles.mediaCover} resizeMode="contain" />
+                        <Image source={{ uri: media.cover }} style={memoDetailStyles.mediaCover} resizeMode="contain" />
                         <View style={memoDetailStyles.mediaTextContainer}>
-                            <Text style={memoDetailStyles.mediaTitle}>{memo.media.title}</Text>
-                            {memo.media.subtitle_album && (
-                                <Text style={memoDetailStyles.mediaSubtitle}>{memo.media.subtitle_album}</Text>
+                            <Text style={memoDetailStyles.mediaTitle}>{media.title}</Text>
+                            {media.show_album && (
+                                <Text style={memoDetailStyles.mediaSubtitle}>{media.show_album}</Text>
                             )}
-                            <Text style={memoDetailStyles.mediaDate}>{memo.media.date}</Text>
-                            {getCategoryIcon(memo.media.category)}
+                            <Text style={memoDetailStyles.mediaDate}>{media.date}</Text>
+                            {getCategoryIcon(media.category)}
                         </View>
                     </View>
                 </TouchableOpacity>
