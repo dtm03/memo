@@ -7,7 +7,7 @@ export const toggleVisibility = (isVisible, setIsVisible) => {
     // Additional visibility logic here
 };
 
-export const toggleEditing = (isEditable, setIsEditable) => {
+export const toggleEditing = (isEditable, setIsEditable, newQuote, memoId) => {
     setIsEditable(!isEditable);
     if (!isEditable) {
         // Save memo logic here
@@ -26,5 +26,20 @@ export const getCategoryIcon = (category) => {
             return <Icon name="tv" size={30} color={colors.tertiaryColor} />;
         default:
             return <Icon name="insert-drive-file" size={30} color={colors.tertiaryColor} />;
+    }
+};
+
+export const getSearchCategory = (category) => {
+    switch (category) {
+        case Category.MOVIE:
+            return "movie";
+        case Category.SONG:
+            return "music";
+        case Category.BOOK:
+            return "ebook";
+        case Category.SERIES:
+            return "tvShow";
+        default:
+            return "all";
     }
 };

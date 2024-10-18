@@ -1,6 +1,5 @@
 import axios from "axios";
-
-// Trying to implement second API, fix tabs once again, fix keyboard view, implement adding quotes functionality
+import {getSearchCategory} from "../utils/helpers";
 
 export const utils = [
     {
@@ -8,6 +7,7 @@ export const utils = [
         quote: "This is an inspirational quote. A very long quote though, so we might actually need two lines. Now we have two lines. I mean, we could have three lines, but that would be too much. So let's stick with two lines. So now we can add something right? How much though. Not too much. On",
         mediaId: 333558155,
         creatorIds: [201, 202, 203, 204],
+        ownerId: 300,
         userIds: [300, 301],
     },
     {
@@ -15,6 +15,7 @@ export const utils = [
         quote: "This is an inspirational quote. A very long quote though, so we might actually need two lines. Now we have two lines. I mean, we could have three lines, but that would be too much.",
         mediaId: 421072264,
         creatorIds: [201, 202, 203, 204],
+        ownerId: 300,
         userIds: [300, 301],
     },
     {
@@ -22,6 +23,7 @@ export const utils = [
         quote: "Another inspirational quote.",
         mediaId: 966768980,
         creatorIds: [203, 204],
+        ownerId: 300,
         userIds: [302],
     },
     {
@@ -29,6 +31,7 @@ export const utils = [
         quote: "Another inspirational quote.",
         mediaId: 317492997,
         creatorIds: [203, 204],
+        ownerId: 300,
         userIds: [303],
     },
     {
@@ -36,6 +39,7 @@ export const utils = [
         quote: "Pull me closer in the backseat of your rover.",
         mediaId: 1544494392,
         creatorIds: [206],
+        ownerId: 300,
         userIds: [300],
     },
     {
@@ -43,6 +47,7 @@ export const utils = [
         quote: "I just can't wait to be king.",
         mediaId: 1544494392,
         creatorIds: [205],
+        ownerId: 300,
         userIds: [301],
     },
     {
@@ -50,12 +55,14 @@ export const utils = [
         quote: "Name of your sextape",
         mediaId: 1544494392,
         creatorIds: [205],
+        ownerId: 300,
         userIds: [302, 303],
     },
     {
         id: 7,
         quote: "I have a dream.",
         creatorIds: [207],
+        ownerId: 300,
         userIds: [300, 301, 302, 303],
     },
 ];
@@ -97,4 +104,14 @@ export const fetchMediaDetails = async (mediaId) => {
 
 export const getCreatorsByIds = (ids) => {
     return creators.filter(creator => ids.includes(creator.id));
+};
+
+export const searchMedia = async (text, category) => {
+    let searchCategory = getSearchCategory(category);
+    if (text.length > 2) {
+        const response = await axios.get(`https://itunes.apple.com/search?term=${text}&media=${searchCategory}&limit=5`);
+        return response.data.results || [];
+    } else {
+        return [];
+    }
 };

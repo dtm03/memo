@@ -1,3 +1,4 @@
+// screens/MemoDetail.js
 import React, { useState, useRef, useEffect } from "react";
 import {
     View,
@@ -30,7 +31,7 @@ const MemoDetail = ({ route }) => {
             textInputRef.current.focus();
             textInputRef.current.setSelection(newQuote.length);
         }
-    }, [isEditable]);
+    }, [isEditable, newQuote.length]);
 
     useEffect(() => {
         const fetchAndSetMediaDetails = async (mediaId) => {
@@ -41,6 +42,7 @@ const MemoDetail = ({ route }) => {
                 console.error('Error fetching media details:', error);
             }
         };
+
         fetchAndSetMediaDetails(memo.mediaId);
     }, [memo.mediaId]);
 
@@ -76,7 +78,7 @@ const MemoDetail = ({ route }) => {
                 </TouchableOpacity>
             )}
             {source === "Collection" && (
-                <ButtonContainer onToggleEditing={setIsEditable} />
+                <ButtonContainer onToggleEditing={setIsEditable} memoId={memo.id} newQuote={newQuote} />
             )}
         </SafeAreaView>
     );

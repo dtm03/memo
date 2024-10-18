@@ -1,7 +1,7 @@
 import React from "react";
 import ListContainer from "../components/ListContainer";
 import MemoCard from "../components/MemoCard";
-import {utils, getCreatorsByIds, getMediaById} from "../api/utils";
+import {utils, getCreatorsByIds} from "../api/utils";
 
 const Collection = () => {
     return (

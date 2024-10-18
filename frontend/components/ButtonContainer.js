@@ -5,12 +5,12 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import colors from "../styles/colors";
 import React, { useState } from "react";
 
-const ButtonContainer = ({ onToggleEditing }) => {
+const ButtonContainer = ({ onToggleEditing, newQuote, memoId }) => {
     const [isVisible, setIsVisible] = useState(true);
     const [isEditable, setIsEditable] = useState(false);
 
     const handleToggleEditing = () => {
-        toggleEditing(isEditable, setIsEditable);
+        toggleEditing(isEditable, setIsEditable, newQuote, memoId);
         onToggleEditing(!isEditable);
     };
 
