@@ -1,8 +1,8 @@
 import { TouchableOpacity, View } from "react-native";
-import { memoDetailStyles } from "../styles/memoDetailStyles";
-import { toggleEditing, toggleVisibility } from "../utils/helpers";
+import { memoDetailStyles } from "../../styles/memoDetailStyles";
+import { toggleEditing, toggleVisibility } from "../../utils/helpers";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import colors from "../styles/colors";
+import colors from "../../styles/colors";
 import React, { useState } from "react";
 
 const ButtonContainer = ({ onToggleEditing, newQuote, memoId }) => {

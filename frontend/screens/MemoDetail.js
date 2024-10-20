@@ -1,21 +1,19 @@
-// screens/MemoDetail.js
 import React, { useState, useRef, useEffect } from "react";
 import {
     View,
     TextInput,
-    TouchableOpacity,
     Text,
     SafeAreaView,
     StatusBar,
-    Linking,
-    Image,
+
 } from "react-native";
 import { memoDetailStyles } from "../styles/memoDetailStyles";
 import { useNavigation } from "@react-navigation/native";
 import colors from "../styles/colors";
-import { getCategoryIcon } from "../utils/helpers";
-import ButtonContainer from "../components/ButtonContainer";
+import ButtonContainer from "../components/detail/ButtonContainer";
 import { fetchMediaDetails } from '../api/utils';
+import {Source} from "../utils/constants";
+import MediaInfoBox from "../components/detail/MediaInfoBox";
 
 const MemoDetail = ({ route }) => {
     const { memo, source } = route.params;
@@ -35,14 +33,9 @@ const MemoDetail = ({ route }) => {
 
     useEffect(() => {
         const fetchAndSetMediaDetails = async (mediaId) => {
-            try {
                 const mediaDetails = await fetchMediaDetails(mediaId);
                 setMedia(mediaDetails);
-            } catch (error) {
-                console.error('Error fetching media details:', error);
-            }
         };
-
         fetchAndSetMediaDetails(memo.mediaId);
     }, [memo.mediaId]);
 
@@ -62,22 +55,8 @@ const MemoDetail = ({ route }) => {
             <View style={memoDetailStyles.authorContainer}>
                 {authors && <Text style={memoDetailStyles.authors}>{authors}</Text>}
             </View>
-            {media && (
-                <TouchableOpacity onPress={() => Linking.openURL(media.link)}>
-                    <View style={memoDetailStyles.mediaContainer}>
-                        <Image source={{ uri: media.cover }} style={memoDetailStyles.mediaCover} resizeMode="contain" />
-                        <View style={memoDetailStyles.mediaTextContainer}>
-                            <Text style={memoDetailStyles.mediaTitle}>{media.title}</Text>
-                            {media.show_album && (
-                                <Text style={memoDetailStyles.mediaSubtitle}>{media.show_album}</Text>
-                            )}
-                            <Text style={memoDetailStyles.mediaDate}>{media.date}</Text>
-                            {getCategoryIcon(media.category)}
-                        </View>
-                    </View>
-                </TouchableOpacity>
-            )}
-            {source === "Collection" && (
+            {media && <MediaInfoBox media={media} />}
+            {source === Source.COLLECTION && (
                 <ButtonContainer onToggleEditing={setIsEditable} memoId={memo.id} newQuote={newQuote} />
             )}
         </SafeAreaView>

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, TouchableOpacity} from 'react-native';
-import {switchSelectorStyles} from '../styles/switchSelectorStyles';
-import colors from "../styles/colors";
+import {switchSelectorStyles} from '../../styles/switchSelectorStyles';
+import colors from "../../styles/colors";
 
 const SwitchSelector = ({options, onSelect}) => {
     const [selectedOption, setSelectedOption] = useState(options[0]);

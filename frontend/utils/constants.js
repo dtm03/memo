@@ -16,6 +16,11 @@ export const Category = Object.freeze({
     OTHER: "Other"
 });
 
+export const Source = Object.freeze({
+   INSPIRATION: "Inspiration",
+   COLLECTION: "Collection",
+});
+
 export const categories = [
     {label: <Icon name="menu-book" size={24} color={colors.tertiaryColor}/>, value: Category.BOOK},
     {label: <Icon name="movie" size={24} color={colors.tertiaryColor}/>, value: Category.MOVIE},

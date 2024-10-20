@@ -1,23 +1,25 @@
 import React from "react";
-import {View, Text, TouchableOpacity} from "react-native";
-import {useNavigation} from "@react-navigation/native";
+import { View, Text, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import {memoCardStyles} from "../styles/memoCardStyles";
+import { memoCardStyles } from "../styles/memoCardStyles";
 import colors from "../styles/colors";
-import {SCREEN_WIDTH} from "../utils/constants";
+import {Source} from "../utils/constants";
 
-const MemoCard = ({source, memo}) => {
+const MemoCard = ({ source, memo }) => {
     const navigation = useNavigation();
 
     return (
-        <TouchableOpacity onPress={() => navigation.navigate("Memo", {source, memo})}>
-            <View style={[memoCardStyles.card, {height: SCREEN_WIDTH}]}>
-                <View style={memoCardStyles.textContainer}>
+        <TouchableOpacity onPress={() => navigation.navigate("Memo", { source, memo })}>
+            <View style={memoCardStyles.card}>
+                <View style={memoCardStyles.quoteContainer}>
                     <Text
-                        style={[memoCardStyles.quote, {fontSize: memo.quote.length > 210 ? 16 : 24}]}>{memo.quote}
+                        style={[memoCardStyles.quote, { fontSize: memo.quote.length > 210 ? 16 : 24 }]}
+                    >
+                        {memo.quote}
                     </Text>
                 </View>
-                <View style={memoCardStyles.divider}/>
+                <View style={memoCardStyles.divider} />
                 <View style={memoCardStyles.authorContainer}>
                     <Text
                         style={memoCardStyles.author}
@@ -26,21 +28,20 @@ const MemoCard = ({source, memo}) => {
                     >
                         {memo.creators.map((creator) => `${creator.name} ${creator.lastName}`).join(", ")}
                     </Text>
-                    <TouchableOpacity
-                        style={source === "Inspiration" ? {marginLeft: 10} : {opacity: 0}}
-                        disabled={source !== "Inspiration"}
-                    >
-                        <Icon name="bookmark-outline" size={30} color="gold"/>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={source === "Inspiration" ? {marginLeft: 10} : {opacity: 0}}
-                        disabled={source !== "Inspiration"}
-                    >
-                        <Icon name="report-gmailerrorred" size={30} color={colors.tertiaryColor}/>
-                    </TouchableOpacity>
+                    {source === Source.INSPIRATION && (
+                        <>
+                            <TouchableOpacity style={{ marginLeft: 10 }}>
+                                <Icon name="bookmark-outline" size={30} color="gold" />
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{ marginLeft: 10 }}>
+                                <Icon name="report-gmailerrorred" size={30} color={colors.tertiaryColor} />
+                            </TouchableOpacity>
+                        </>
+                    )}
                 </View>
             </View>
         </TouchableOpacity>
     );
 };
+
 export default MemoCard;
