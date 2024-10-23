@@ -1,14 +1,13 @@
 import {StyleSheet} from "react-native";
 import colors from "./colors";
-import { SCREEN_WIDTH } from "../utils/constants";
+import { SCREEN_WIDTH } from "./constants";
 
 export const memoCardStyles = StyleSheet.create({
     card: {
         backgroundColor: "white",
         paddingBottom: 10,
-        marginBottom: 20,
+        marginBottom: 15,
         borderRadius: 15,
-        width: SCREEN_WIDTH - 30,
         height: SCREEN_WIDTH,
     },
     quoteContainer: {

@@ -4,12 +4,12 @@ import {newMemoStyles} from "../styles/newMemoStyles";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import colors from "../styles/colors";
 import SwitchSelector from "../components/new/SwitchSelector";
-import {categories, Category} from "../utils/constants";
+import {categories, Category} from "../styles/constants";
 import {searchMedia} from "../api/utils";
 import ResultList from "../components/new/ResultList";
 import SelectedMedia from "../components/new/SelectedMedia";
 
-// Query Änderung bei anderer Media-Auswahl, selection bei Menü-Wechsel, Keyboard fixen
+// Keyboard fixen,
 
 const NewMemo = ({navigation, userId}) => {
     const [quote, setQuote] = useState("");
@@ -24,7 +24,7 @@ const NewMemo = ({navigation, userId}) => {
 
     const handleSearchMedia = async (text, category) => {
         setQuery(text);
-        if (text.length > 2) {
+        if (text.length > 2 && category !== Category.OTHER) {
             setIsSearching(true);
             const results = await searchMedia(text, category);
             setResults(results);
@@ -47,6 +47,11 @@ const NewMemo = ({navigation, userId}) => {
         setResults([]);
     };
 
+    const reset = () => {
+        deleteMediaSelection();
+        setQuote('');
+    }
+
     const addQuote = () => {
         console.log("Adding quote...");
     };
@@ -55,20 +60,25 @@ const NewMemo = ({navigation, userId}) => {
         <View style={newMemoStyles.container}>
             <SwitchSelector
                 options={categories}
-                onSelect={(value) => setSelectedCategory(value)}
+                onSelect={(value) => {
+                    setSelectedCategory(value);
+                    handleSearchMedia(query, value);
+                }}
             />
-            {!isSearching ? (
-                <TextInput
-                    style={newMemoStyles.quoteInput}
-                    value={quote}
-                    placeholderTextColor={colors.tertiaryColor}
-                    onChangeText={setQuote}
-                    placeholder="Enter your new quote"
-                    maxLength={280}
-                />
-            ) : (
-                <ResultList results={results} onSelectMedia={selectMedia}/>
-            )}
+            <View style={newMemoStyles.quoteInputSearchContainer}>
+                {!isSearching ? (
+                    <TextInput
+                        style={newMemoStyles.quoteInput}
+                        value={quote}
+                        placeholderTextColor={colors.tertiaryColor}
+                        onChangeText={setQuote}
+                        placeholder="Enter your new quote"
+                        maxLength={280}
+                    />
+                ) : (
+                    <ResultList results={results} onSelectMedia={selectMedia}/>
+                )}
+            </View>
             {selectedMedia ? (
                 <SelectedMedia selectedMedia={selectedMedia} deleteMediaSelection={deleteMediaSelection}/>
             ) : (
@@ -92,7 +102,10 @@ const NewMemo = ({navigation, userId}) => {
                 />
             )}
             <View style={newMemoStyles.buttonContainer}>
-                <TouchableOpacity style={{paddingHorizontal: 20}} onPress={() => setIsVisible(!isVisible)}>
+                <TouchableOpacity style={{paddingHorizontal: 20}} onPress={() => reset()}>
+                    <Icon name={"cached"} size={30} color={colors.secondaryColor}/>
+                </TouchableOpacity>
+                <TouchableOpacity style={{paddingRight: 20}} onPress={() => setIsVisible(!isVisible)}>
                     <Icon name={isVisible ? "visibility" : "visibility-off"} size={30} color={colors.secondaryColor}/>
                 </TouchableOpacity>
                 <TouchableOpacity style={newMemoStyles.button} onPress={addQuote}>

@@ -1,10 +1,10 @@
-import { StyleSheet } from "react-native";
+import {StyleSheet} from "react-native";
 import colors from "./colors";
 
 export const memoDetailStyles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20,
+        padding: 15,
         justifyContent: "center",
         backgroundColor: colors.primaryColor,
     },

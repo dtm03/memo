@@ -1,5 +1,5 @@
 import axios from "axios";
-import {getSearchCategory} from "../utils/helpers";
+import {Category} from "../styles/constants";
 
 export const utils = [
     {
@@ -107,11 +107,24 @@ export const getCreatorsByIds = (ids) => {
 };
 
 export const searchMedia = async (text, category) => {
-    let searchCategory = getSearchCategory(category);
-    if (text.length > 2) {
-        const response = await axios.get(`https://itunes.apple.com/search?term=${text}&media=${searchCategory}&limit=5`);
-        return response.data.results || [];
-    } else {
-        return [];
+    let searchCategory;
+    switch (category) {
+        case Category.MOVIE:
+            searchCategory = "movie";
+            break;
+        case Category.SONG:
+            searchCategory = "music";
+            break;
+        case Category.BOOK:
+            searchCategory = "ebook";
+            break;
+        case Category.SERIES:
+            searchCategory = "tvShow";
+            break;
+        default:
+            searchCategory = "all";
+            break;
     }
+    const response = await axios.get(`https://itunes.apple.com/search?term=${text}&media=${searchCategory}&limit=5`);
+    return response.data.results || [];
 };

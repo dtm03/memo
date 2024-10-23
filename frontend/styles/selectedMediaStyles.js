@@ -1,6 +1,6 @@
 import {StyleSheet} from "react-native";
 import colors from "./colors";
-import {SCREEN_WIDTH} from "../utils/constants";
+import {SCREEN_WIDTH} from "./constants";
 
 
 export const selectedMediaStyles = StyleSheet.create({
