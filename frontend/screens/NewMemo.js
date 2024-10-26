@@ -4,7 +4,7 @@ import {newMemoStyles} from "../styles/newMemoStyles";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import colors from "../styles/colors";
 import SwitchSelector from "../components/new/SwitchSelector";
-import {categories, Category} from "../styles/constants";
+import {categories, Category} from "../constants";
 import {searchMedia} from "../api/utils";
 import ResultList from "../components/new/ResultList";
 import SelectedMedia from "../components/new/SelectedMedia";

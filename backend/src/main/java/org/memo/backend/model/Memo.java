@@ -1,8 +1,6 @@
-// Memo.java
 package org.memo.backend.model;
 
 import jakarta.persistence.*;
-
 import java.util.Date;
 import java.util.Set;
 
@@ -21,19 +19,32 @@ public class Memo {
     @Column(nullable = false)
     private boolean isVisible;
 
+    private long mediaID;
+
+    private String link;
+
+    @ManyToOne
+    @JoinColumn(name = "owner_id", nullable = false)
+    private User owner;
+
+    @ManyToMany
+    @JoinTable(
+            name = "memo_creator",
+            joinColumns = @JoinColumn(name = "memo_id"),
+            inverseJoinColumns = @JoinColumn(name = "creator_id")
+    )
+    private Set<Creator> creators;
+
     @ManyToMany(mappedBy = "memos")
     private Set<User> users;
 
-    @ManyToOne
-    @JoinColumn(name = "mediaID", nullable = false)
-    private Media media;
+    @PrePersist
+    protected void onCreate() {
+        creationDate = new Date();
+    }
 
     public Long getMemoID() {
         return memoID;
-    }
-
-    public void setMemoID(Long memoID) {
-        this.memoID = memoID;
     }
 
     public String getQuote() {
@@ -44,14 +55,6 @@ public class Memo {
         this.quote = quote;
     }
 
-    public Date getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
-
     public boolean isVisible() {
         return isVisible;
     }
@@ -60,19 +63,43 @@ public class Memo {
         isVisible = visible;
     }
 
+    public long getMediaID() {
+        return mediaID;
+    }
+
+    public void setMediaID(long mediaId) {
+        this.mediaID = mediaId;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
+    public Set<Creator> getCreators() {
+        return creators;
+    }
+
+    public void setCreators(Set<Creator> creators) {
+        this.creators = creators;
+    }
+
     public Set<User> getUsers() {
         return users;
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
-
-    public Media getMedia() {
-        return media;
-    }
-
-    public void setMedia(Media media) {
-        this.media = media;
+    public boolean getIsVisible() {
+        return isVisible;
     }
 }

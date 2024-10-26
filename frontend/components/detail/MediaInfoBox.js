@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image, Linking } from "react-native";
 import {mediaInfoBoxStyles} from "../../styles/mediaInfoBoxStyles";
-import {Category} from "../../styles/constants";
+import {Category} from "../../constants";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import colors from "../../styles/colors";
 

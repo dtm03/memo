@@ -1,5 +1,5 @@
 import {StyleSheet} from "react-native";
-import { SCREEN_WIDTH } from "./constants";
+import { SCREEN_WIDTH } from "../constants";
 
 export const switchSelectorStyles = StyleSheet.create({
     switchContainer: {

@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { memoCardStyles } from "../styles/memoCardStyles";
 import colors from "../styles/colors";
-import {Source} from "../styles/constants";
+import {Source} from "../constants";
 
 const MemoCard = ({ source, memo }) => {
     const navigation = useNavigation();

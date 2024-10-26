@@ -33,6 +33,15 @@ public class UserController {
         }
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllUsers() {
+        try {
+            return ResponseEntity.ok(userRepository.findAll());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
     @Transactional
     @DeleteMapping("/{userId}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
@@ -42,13 +51,11 @@ public class UserController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
 
-            Set<Memo> memos = user.getMemos();
-            for (Memo memo : memos) {
-                Set<User> users = memo.getUsers();
-                if (users.size() == 1 && users.contains(user)) {
+            for (Memo memo : user.getMemos()) {
+                memo.getUsers().remove(user);
+                if (memo.getUsers().isEmpty() || memo.getOwner().equals(user)) {
                     memoRepository.delete(memo);
                 } else {
-                    users.remove(user);
                     memoRepository.save(memo);
                 }
             }

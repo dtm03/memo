@@ -10,7 +10,7 @@ import {useNavigation} from "@react-navigation/native";
 import colors from "../styles/colors";
 import ButtonContainer from "../components/detail/ButtonContainer";
 import {fetchMediaDetails} from '../api/utils';
-import {Source} from "../styles/constants";
+import {Source} from "../constants";
 import MediaInfoBox from "../components/detail/MediaInfoBox";
 
 const MemoDetail = ({route}) => {

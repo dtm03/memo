@@ -15,16 +15,11 @@ public class Creator {
 
     private String lastName;
 
-    @ManyToMany
-    @JoinTable(name = "media_creator", joinColumns = @JoinColumn(name = "creatorID"), inverseJoinColumns = @JoinColumn(name = "mediaID"))
-    private Set<Media> media;
+    @ManyToMany(mappedBy = "creators")
+    private Set<Memo> memos;
 
     public Long getCreatorID() {
         return creatorID;
-    }
-
-    public void setCreatorID(Long creatorID) {
-        this.creatorID = creatorID;
     }
 
     public String getName() {
@@ -43,11 +38,7 @@ public class Creator {
         this.lastName = lastName;
     }
 
-    public Set<Media> getMedia() {
-        return media;
-    }
-
-    public void setMedia(Set<Media> media) {
-        this.media = media;
+    public Set<Memo> getMemos() {
+        return memos;
     }
 }

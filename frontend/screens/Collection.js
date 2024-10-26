@@ -2,7 +2,7 @@ import React from "react";
 import ListContainer from "../components/ListContainer";
 import MemoCard from "../components/MemoCard";
 import {utils, getCreatorsByIds} from "../api/utils";
-import {Source} from "../styles/constants";
+import {Source} from "../constants";
 
 const Collection = () => {
     return (

@@ -1,6 +1,6 @@
 import { Dimensions } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import colors from "./colors";
+import colors from "./styles/colors";
 import React from "react";
 
 const { width, height } = Dimensions.get("screen");

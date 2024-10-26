@@ -1,5 +1,5 @@
 import axios from "axios";
-import {Category} from "../styles/constants";
+import {Category} from "../constants";
 
 export const utils = [
     {
