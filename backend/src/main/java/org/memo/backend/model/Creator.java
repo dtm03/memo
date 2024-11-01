@@ -1,5 +1,6 @@
 package org.memo.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -8,7 +9,7 @@ import java.util.Set;
 public class Creator {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long creatorID;
+    private Long creatorId;
 
     @Column(nullable = false)
     private String name;
@@ -16,10 +17,11 @@ public class Creator {
     private String lastName;
 
     @ManyToMany(mappedBy = "creators")
+    @JsonIgnore
     private Set<Memo> memos;
 
-    public Long getCreatorID() {
-        return creatorID;
+    public Long getCreatorId() {
+        return creatorId;
     }
 
     public String getName() {

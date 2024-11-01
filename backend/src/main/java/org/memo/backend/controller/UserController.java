@@ -8,13 +8,13 @@ import org.memo.backend.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Set;
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
-
     private final UserRepository userRepository;
     private final MemoRepository memoRepository;
 
@@ -24,46 +24,39 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createUser(@RequestBody User user) {
-        try {
-            User newUser = userRepository.save(user);
-            return ResponseEntity.status(HttpStatus.CREATED).body(newUser.getUserID());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+    public ResponseEntity<?> createUser() {
+        User user = userRepository.save(new User());
+        return ResponseEntity.status(HttpStatus.CREATED).body(user.getUserId());
     }
 
-    @GetMapping("/all")
+    @GetMapping("/{userId}")
+    public ResponseEntity<?> getMemosByUserId(@PathVariable Long userId) {
+        return ResponseEntity.ok(memoRepository.findByUserUserId(userId));
+    }
+
+    @GetMapping
     public ResponseEntity<?> getAllUsers() {
-        try {
-            return ResponseEntity.ok(userRepository.findAll());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+        return ResponseEntity.ok(userRepository.findAll());
     }
 
     @Transactional
     @DeleteMapping("/{userId}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
-        try {
-            User user = userRepository.findById(userId).orElse(null);
-            if (user == null) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-            }
-
-            for (Memo memo : user.getMemos()) {
-                memo.getUsers().remove(user);
-                if (memo.getUsers().isEmpty() || memo.getOwner().equals(user)) {
-                    memoRepository.delete(memo);
-                } else {
-                    memoRepository.save(memo);
-                }
-            }
-
-            userRepository.deleteById(userId);
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    public ResponseEntity<Void> deleteUserAndMemos(@PathVariable Long userId) {
+        List<Memo> memos = memoRepository.findByOwnerUserId(userId);
+        for (Memo memo : memos) {
+            memo.setOwner(memo.getUser());
+            memoRepository.save(memo);
         }
+        memoRepository.deleteAll(memoRepository.findByOwnerUserId(userId));
+        userRepository.deleteById(userId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @Transactional
+    @DeleteMapping("/{userId}/all")
+    public ResponseEntity<Void> deleteUserAndAllMemos(@PathVariable Long userId) {
+        memoRepository.deleteAll(memoRepository.findByOwnerUserId(userId));
+        userRepository.deleteById(userId);
+        return ResponseEntity.noContent().build();
     }
 }

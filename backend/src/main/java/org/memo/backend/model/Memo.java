@@ -1,6 +1,7 @@
 package org.memo.backend.model;
 
 import jakarta.persistence.*;
+
 import java.util.Date;
 import java.util.Set;
 
@@ -8,13 +9,13 @@ import java.util.Set;
 public class Memo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long memoID;
-
-    @Column(nullable = false)
-    private String quote;
+    private Long memoId;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
+
+    @Column(nullable = false)
+    private String quote;
 
     @Column(nullable = false)
     private boolean isVisible;
@@ -23,28 +24,27 @@ public class Memo {
 
     private String link;
 
-    @ManyToOne
-    @JoinColumn(name = "owner_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     private User owner;
 
-    @ManyToMany
-    @JoinTable(
-            name = "memo_creator",
-            joinColumns = @JoinColumn(name = "memo_id"),
-            inverseJoinColumns = @JoinColumn(name = "creator_id")
-    )
-    private Set<Creator> creators;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private User user;
 
-    @ManyToMany(mappedBy = "memos")
-    private Set<User> users;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "memo_creator", joinColumns = @JoinColumn(name = "memo_id"), inverseJoinColumns = @JoinColumn(name = "creator_id"))
+    private Set<Creator> creators;
 
     @PrePersist
     protected void onCreate() {
         creationDate = new Date();
     }
 
-    public Long getMemoID() {
-        return memoID;
+    public Long getMemoId() {
+        return memoId;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
     }
 
     public String getQuote() {
@@ -55,19 +55,19 @@ public class Memo {
         this.quote = quote;
     }
 
-    public boolean isVisible() {
+    public boolean getIsVisible() {
         return isVisible;
     }
 
-    public void setVisible(boolean visible) {
+    public void setIsVisible(boolean visible) {
         isVisible = visible;
     }
 
-    public long getMediaID() {
+    public long getMediaId() {
         return mediaID;
     }
 
-    public void setMediaID(long mediaId) {
+    public void setMediaId(long mediaId) {
         this.mediaID = mediaId;
     }
 
@@ -83,8 +83,16 @@ public class Memo {
         return owner;
     }
 
-    public void setOwner(User owner) {
-        this.owner = owner;
+    public void setOwner(User user) {
+        this.owner = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Set<Creator> getCreators() {
@@ -93,13 +101,5 @@ public class Memo {
 
     public void setCreators(Set<Creator> creators) {
         this.creators = creators;
-    }
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public boolean getIsVisible() {
-        return isVisible;
     }
 }

@@ -1,93 +1,78 @@
 package org.memo.backend.controller;
 
+import jakarta.transaction.Transactional;
+import org.memo.backend.database.CreatorRepository;
 import org.memo.backend.database.MemoRepository;
 import org.memo.backend.database.UserRepository;
+import org.memo.backend.model.Creator;
+import org.memo.backend.model.User;
 import org.memo.backend.model.Memo;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/memo")
 public class MemoController {
-
     private final MemoRepository memoRepository;
     private final UserRepository userRepository;
+    private final CreatorRepository creatorRepository;
 
-    public MemoController(MemoRepository memoRepository, UserRepository userRepository) {
+    public MemoController(MemoRepository memoRepository, UserRepository userRepository, CreatorRepository creatorRepository) {
         this.memoRepository = memoRepository;
         this.userRepository = userRepository;
+        this.creatorRepository = creatorRepository;
     }
 
-    @PostMapping
-    public ResponseEntity<?> createMemo(@RequestBody Memo memo) {
-        try {
-            Memo newMemo = memoRepository.save(memo);
-            return ResponseEntity.status(HttpStatus.CREATED).body(newMemo.getMemoID());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+    @Transactional
+    @PostMapping("/{userId}")
+    public ResponseEntity<?> createMemo(@PathVariable Long userId, @RequestBody CreateMemoRequest memoBody) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+
+        Memo memo = new Memo();
+        memo.setQuote(memoBody.getQuote());
+        memo.setIsVisible(memoBody.getIsVisible());
+        memo.setMediaId(memoBody.getMediaId());
+        memo.setLink(memoBody.getLink());
+        memo.setUser(user);
+        memo.setOwner(memoBody.getOwner() == null ? user : memoBody.getOwner());
+
+        Set<Creator> creators = memoBody.getCreators().stream().map(creator -> {
+            return creatorRepository.findByNameAndLastName(creator.getName(), creator.getLastName()).orElseGet(() -> {
+                Creator newCreator = new Creator();
+                newCreator.setName(creator.getName());
+                newCreator.setLastName(creator.getLastName());
+                return creatorRepository.save(newCreator);
+            });
+        }).collect(Collectors.toSet());
+        memo.setCreators(creators);
+
+        memoRepository.save(memo);
+        return ResponseEntity.status(HttpStatus.CREATED).body(memo.getMemoId());
     }
 
-    @GetMapping("/allAll")
-    public ResponseEntity<?> getAllMemos() {
-        try {
-            return ResponseEntity.ok(memoRepository.findAll());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
-
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<?> getAllPublicMemos() {
-        try {
-            return ResponseEntity.ok(memoRepository.findAll().stream().filter(Memo::getIsVisible));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
-
-    @GetMapping("/{userID}")
-    public ResponseEntity<?> getMemosByUserId(@PathVariable Long userID) {
-        return userRepository.findById(userID)
-                .map(user -> ResponseEntity.ok(user.getMemos()))
-                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+        return ResponseEntity.ok(memoRepository.findAll().stream().filter(Memo::getIsVisible));
     }
 
     @PutMapping("/{memoId}")
-    public ResponseEntity<?> updateMemo(@PathVariable Long memoId, @RequestBody Memo memo) {
-        try {
-            memoRepository.save(memo);
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
-
-    @PutMapping("/{memoId}/{userId}")
-    public ResponseEntity<?> saveMemo(@PathVariable Long memoId, @PathVariable Long userId) {
-        try {
-            return memoRepository.findById(memoId)
-                    .map(memo -> userRepository.findById(userId)
-                            .map(user -> {
-                                memo.getUsers().add(user);
-                                memoRepository.save(memo);
-                                return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-                            })
-                            .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build()))
-                    .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+    public ResponseEntity<?> updateMemo(@PathVariable Long memoId, @RequestBody Map<String, String> quote) {
+        Memo memo = memoRepository.findById(memoId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        memo.setQuote(quote.get("quote"));
+        memoRepository.save(memo);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{memoId}")
     public ResponseEntity<Void> deleteMemo(@PathVariable Long memoId) {
-        try {
-            memoRepository.deleteById(memoId);
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+        memoRepository.findById(memoId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        memoRepository.deleteById(memoId);
+        return ResponseEntity.noContent().build();
     }
 }
