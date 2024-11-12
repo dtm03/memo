@@ -1,5 +1,5 @@
 import axios from "axios";
-import {Category} from "../constants";
+import {Category, serverURL} from "../constants";
 
 export const utils = [
     {
@@ -128,3 +128,7 @@ export const searchMedia = async (text, category) => {
     const response = await axios.get(`https://itunes.apple.com/search?term=${text}&media=${searchCategory}&limit=5`);
     return response.data.results || [];
 };
+
+export const getPublicMemos = () =>
+    axios.get(serverURL + "memo").then((response) => response.data || []);
+

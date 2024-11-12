@@ -9,6 +9,7 @@ export const memoCardStyles = StyleSheet.create({
         marginBottom: 15,
         borderRadius: 15,
         height: SCREEN_WIDTH,
+        width: SCREEN_WIDTH - 30,
     },
     quoteContainer: {
         justifyContent: "center",

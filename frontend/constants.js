@@ -28,3 +28,6 @@ export const categories = [
     {label: <Icon name="tv" size={24} color={colors.tertiaryColor}/>, value: Category.SERIES},
     {label: <Icon name="insert-drive-file" size={24} color={colors.tertiaryColor}/>, value: Category.OTHER}
 ];
+
+export const serverURL =  "http://192.168.178.143:8080/";
+

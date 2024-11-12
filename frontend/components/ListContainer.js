@@ -10,7 +10,7 @@ const ListContainer = ({data, renderItem}) => {
             <FlatList
                 data={data}
                 renderItem={renderItem}
-                keyExtractor={(item) => item.id.toString()}
+                keyExtractor={(item) => item.memoId}
             />
         </View>
     );

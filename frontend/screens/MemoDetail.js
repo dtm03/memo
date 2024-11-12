@@ -20,7 +20,10 @@ const MemoDetail = ({route}) => {
     const [isEditable, setIsEditable] = useState(false);
     const [media, setMedia] = useState(null);
     const textInputRef = useRef(null);
-    const authors = memo.creators ? memo.creators.map(creator => `${creator.name} ${creator.lastName}`).join(", ") : "";
+    const authors = memo.creators ?
+        memo.creators.map((creator) =>
+            creator.lastName ? `${creator.name} ${creator.lastName}` : creator.name
+        ).join(", ") : "";
     const windowHeight = useWindowDimensions().height;
 
     useEffect(() => {
