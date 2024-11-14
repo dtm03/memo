@@ -1,5 +1,6 @@
 package org.memo.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -20,7 +21,8 @@ public class Memo {
     @Column(nullable = false)
     private boolean isVisible;
 
-    private long mediaID;
+    @JsonProperty("mediaId")
+    private long mediaId;
 
     private String link;
 
@@ -64,11 +66,11 @@ public class Memo {
     }
 
     public long getMediaId() {
-        return mediaID;
+        return mediaId;
     }
 
     public void setMediaId(long mediaId) {
-        this.mediaID = mediaId;
+        this.mediaId = mediaId;
     }
 
     public String getLink() {

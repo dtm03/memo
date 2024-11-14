@@ -2,7 +2,6 @@ import React from "react";
 import {View, Text, StyleSheet, Image} from "react-native";
 import ListContainer from "../components/ListContainer";
 import MemoCardBook from "./MemoCardBook";
-import {utils, getCreatorsByIds} from "../api/utils";
 
 const BookDetail = ({route}) => {
     const {book} = route.params;

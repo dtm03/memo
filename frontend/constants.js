@@ -31,3 +31,5 @@ export const categories = [
 
 export const serverURL =  "http://192.168.178.143:8080/";
 
+export const userId = 1;
+

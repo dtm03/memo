@@ -1,17 +1,38 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useCallback} from "react";
 import ListContainer from "../components/ListContainer";
 import MemoCard from "../components/MemoCard";
-import {getPublicMemos} from "../api/utils";
-import {Source} from "../constants";
+import {serverURL, Source} from "../constants";
+import axios from "axios";
+import {useFocusEffect} from "@react-navigation/native";
 
 const Inspiration = () => {
     const [memos, setMemos] = useState([]);
+    const [refreshing, setRefreshing] = useState(false);
+
+    const fetchMemos = async () => {
+        try {
+            const response = await axios.get(`${serverURL}memo`);
+            setMemos(response.data || []);
+        } catch (error) {
+            console.error("Error fetching memos:", error);
+        }
+    };
 
     useEffect(() => {
-        getPublicMemos()
-            .then(setMemos)
-            .catch((error) => console.error("Error fetching memos:", error));
+        fetchMemos();
     }, []);
+
+    useFocusEffect(
+        useCallback(() => {
+            fetchMemos();
+        }, [])
+    );
+
+    const onRefresh = async () => {
+        setRefreshing(true);
+        await fetchMemos();
+        setRefreshing(false);
+    };
 
     return (
         <ListContainer
@@ -24,6 +45,8 @@ const Inspiration = () => {
                     }}
                 />
             )}
+            refreshing={refreshing}
+            onRefresh={onRefresh}
         />
     );
 };

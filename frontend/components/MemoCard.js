@@ -16,7 +16,7 @@ const MemoCard = ({source, memo}) => {
                     <Text
                         style={[memoCardStyles.quote, {fontSize: memo.quote.length > 210 ? 16 : 24}]}
                     >
-                        {memo.quote}
+                        {memo.quote + memo.isVisible}
                     </Text>
                 </View>
                 <View style={memoCardStyles.divider}/>

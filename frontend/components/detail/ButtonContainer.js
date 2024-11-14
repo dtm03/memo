@@ -3,23 +3,44 @@ import {memoDetailStyles} from "../../styles/memoDetailStyles";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import colors from "../../styles/colors";
 import React, {useState} from "react";
+import {serverURL} from "../../constants";
+import axios from "axios";
+import {useNavigation} from "@react-navigation/native";
 
-const ButtonContainer = ({onToggleEditing, newQuote, memoId}) => {
-    const [isVisible, setIsVisible] = useState(true);
-    const [isEditable, setIsEditable] = useState(false);
+const ButtonContainer = ({isEditable, setIsEditable, isMemoVisible, newQuote, memoId}) => {
+    const navigation = useNavigation();
+    const [isVisible, setIsVisible] = useState(isMemoVisible);
 
-    const handleToggleEditing = () => {
+    const handleToggleEditing = async () => {
         setIsEditable(!isEditable);
-        onToggleEditing(!isEditable);
-        if (!isEditable) {
-            // Save memo logic here
+        if (isEditable) {
+            try {
+                await axios.put(`${serverURL}memo/${memoId}`, {quote: newQuote});
+            } catch (error) {
+                console.error("Error updating memo:", error);
+            }
         }
     };
 
-    const toggleVisibility = (isVisible, setIsVisible) => {
-        setIsVisible(!isVisible);
-        // Additional visibility logic here
+    const toggleVisibility = async () => {
+        const newVisibility = !isVisible;
+        setIsVisible(newVisibility);
+        try {
+            await axios.put(`${serverURL}memo/${memoId}/${newVisibility}`);
+            console.log("Visibility updated");
+        } catch (error) {
+            console.error("Error updating memo:", error);
+        }
     };
+
+    const handleDelete = async () => {
+        try {
+            await axios.delete(`${serverURL}memo/${memoId}`);
+            navigation.goBack();
+        } catch (error) {
+            console.error("Error deleting memo:", error);
+        }
+    }
 
     return (
         <View style={memoDetailStyles.buttonContainer}>
@@ -32,7 +53,7 @@ const ButtonContainer = ({onToggleEditing, newQuote, memoId}) => {
             <TouchableOpacity onPress={handleToggleEditing}>
                 <Icon name={isEditable ? "save" : "mode-edit"} size={30} color={colors.tertiaryColor}/>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={handleDelete}>
                 <Icon name="delete-outline" size={30} color={colors.tertiaryColor}/>
             </TouchableOpacity>
         </View>

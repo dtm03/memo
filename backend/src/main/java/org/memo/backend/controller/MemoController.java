@@ -69,6 +69,14 @@ public class MemoController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("/{memoId}/{isVisible}")
+    public ResponseEntity<?> updateVisiblity(@PathVariable Long memoId, @PathVariable boolean isVisible) {
+        Memo memo = memoRepository.findById(memoId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        memo.setIsVisible(isVisible);
+        memoRepository.save(memo);
+        return ResponseEntity.noContent().build();
+    }
+
     @DeleteMapping("/{memoId}")
     public ResponseEntity<Void> deleteMemo(@PathVariable Long memoId) {
         memoRepository.findById(memoId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));

@@ -8,7 +8,7 @@ import java.util.Set;
 public class CreateMemoRequest {
     private String quote;
     private boolean isVisible;
-    private long mediaID;
+    private long mediaId;
     private String link;
     private Set<Creator> creators;
     private User owner;
@@ -23,7 +23,7 @@ public class CreateMemoRequest {
     }
 
     public long getMediaId() {
-        return mediaID;
+        return mediaId;
     }
 
     public String getLink() {
