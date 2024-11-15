@@ -1,18 +1,22 @@
-import React, {useEffect, useState, useCallback} from "react";
+import React, {useEffect, useState, useCallback, useContext} from "react";
 import ListContainer from "../components/ListContainer";
 import MemoCard from "../components/MemoCard";
 import {serverURL, Source} from "../constants";
 import axios from "axios";
 import {useFocusEffect} from "@react-navigation/native";
+import {UserContext} from "../components/UserContext";
 
 const Inspiration = () => {
     const [memos, setMemos] = useState([]);
     const [refreshing, setRefreshing] = useState(false);
+    const { userId } = useContext(UserContext);
 
     const fetchMemos = async () => {
         try {
             const response = await axios.get(`${serverURL}memo`);
             setMemos(response.data || []);
+            // const filteredMemos = response.data.filter(memo => memo.owner.userId !== userId && memo.user.userId !== userId);
+            // setMemos(filteredMemos || []);
         } catch (error) {
             console.error("Error fetching memos:", error);
         }

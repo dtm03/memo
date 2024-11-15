@@ -6,6 +6,7 @@ import React, {useState} from "react";
 import {serverURL} from "../../constants";
 import axios from "axios";
 import {useNavigation} from "@react-navigation/native";
+import Toast from "react-native-toast-message";
 
 const ButtonContainer = ({isEditable, setIsEditable, isMemoVisible, newQuote, memoId}) => {
     const navigation = useNavigation();
@@ -27,7 +28,6 @@ const ButtonContainer = ({isEditable, setIsEditable, isMemoVisible, newQuote, me
         setIsVisible(newVisibility);
         try {
             await axios.put(`${serverURL}memo/${memoId}/${newVisibility}`);
-            console.log("Visibility updated");
         } catch (error) {
             console.error("Error updating memo:", error);
         }
@@ -37,6 +37,11 @@ const ButtonContainer = ({isEditable, setIsEditable, isMemoVisible, newQuote, me
         try {
             await axios.delete(`${serverURL}memo/${memoId}`);
             navigation.goBack();
+            Toast.show({
+                type: "success",
+                text1: "Memo deleted successfully",
+                topOffset: 10,
+            });
         } catch (error) {
             console.error("Error deleting memo:", error);
         }
@@ -45,7 +50,7 @@ const ButtonContainer = ({isEditable, setIsEditable, isMemoVisible, newQuote, me
     return (
         <View style={memoDetailStyles.buttonContainer}>
             <TouchableOpacity onPress={() => toggleVisibility(isVisible, setIsVisible)}>
-                <Icon name={isVisible ? "visibility-off" : "visibility"} size={30} color={colors.tertiaryColor}/>
+                <Icon name={isVisible ? "visibility" : "visibility-off"} size={30} color={colors.tertiaryColor}/>
             </TouchableOpacity>
             <TouchableOpacity>
                 <Icon name="share" size={30} color={colors.tertiaryColor}/>

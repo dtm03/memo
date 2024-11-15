@@ -29,7 +29,5 @@ export const categories = [
     {label: <Icon name="insert-drive-file" size={24} color={colors.tertiaryColor}/>, value: Category.OTHER}
 ];
 
-export const serverURL =  "http://192.168.178.143:8080/";
-
-export const userId = 1;
-
+export const serverURL =  "http://192.168.0.107:8080/";
+// Stuttgart Heim: "http://192.168.178.143:8080/";

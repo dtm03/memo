@@ -16,7 +16,7 @@ import MediaInfoBox from "../components/detail/MediaInfoBox";
 const MemoDetail = ({route}) => {
     const {memo, source} = route.params;
     const navigation = useNavigation();
-    const [newQuote, setNewQuote] = useState(memo.quote + memo.isVisible);
+    const [newQuote, setNewQuote] = useState(memo.quote);
     const [isEditable, setIsEditable] = useState(false);
     const [media, setMedia] = useState(null);
     const textInputRef = useRef(null);
@@ -57,9 +57,9 @@ const MemoDetail = ({route}) => {
             <View style={memoDetailStyles.authorContainer}>
                 {authors && <Text style={memoDetailStyles.authors}>{authors}</Text>}
             </View>
-            {media && <MediaInfoBox media={media}/>}
+            {media && <MediaInfoBox link={memo.link} media={media}/>}
             {source === Source.COLLECTION && (
-                <ButtonContainer isEditable={isEditable} setIsEditable={setIsEditable} memoId={memo.memoId} newQuote={newQuote}/>
+                <ButtonContainer isEditable={isEditable} setIsEditable={setIsEditable} isMemoVisible={memo.isVisible} memoId={memo.memoId} newQuote={newQuote}/>
             )}
         </View>
     );
