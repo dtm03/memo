@@ -68,9 +68,9 @@ const MemoCard = ({source, memo}) => {
                             <TouchableOpacity style={{marginLeft: 10}} onPress={saveMemo}>
                                 <Icon name="bookmark-outline" size={30} color="gold"/>
                             </TouchableOpacity>
-                            <TouchableOpacity style={{marginLeft: 10}}>
-                                <Icon name="report-gmailerrorred" size={30} color={colors.tertiaryColor}/>
-                            </TouchableOpacity>
+                            {/*<TouchableOpacity style={{marginLeft: 10}}>*/}
+                            {/*    <Icon name="report-gmailerrorred" size={30} color={colors.tertiaryColor}/>*/}
+                            {/*</TouchableOpacity>*/}
                         </>
                     )}
                 </View>

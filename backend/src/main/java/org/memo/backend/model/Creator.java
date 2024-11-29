@@ -14,8 +14,6 @@ public class Creator {
     @Column(nullable = false)
     private String name;
 
-    private String lastName;
-
     @ManyToMany(mappedBy = "creators")
     @JsonIgnore
     private Set<Memo> memos;
@@ -30,14 +28,6 @@ public class Creator {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public Set<Memo> getMemos() {

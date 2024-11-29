@@ -1,31 +1,29 @@
-import React, {useCallback, useContext, useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import ListContainer from "../components/ListContainer";
 import MemoCard from "../components/MemoCard";
 import {serverURL, Source} from "../constants";
 import axios from "axios";
-import {useFocusEffect} from "@react-navigation/native";
 import {UserContext} from "../components/UserContext";
 
 const Collection = () => {
     const [memos, setMemos] = useState([]);
     const [refreshing, setRefreshing] = useState(false);
-    const {userId} = useContext(UserContext);
+    const {userId, refreshCollection} = useContext(UserContext);
 
     const fetchMemos = async () => {
         try {
             const response = await axios.get(`${serverURL}user/${userId}`);
             setMemos(response.data || []);
         } catch (error) {
-            console.error("Error fetching memos:", error);
+            console.error("Error fetching memos in Collection:", error);
         }
     };
-    useFocusEffect(
-        useCallback(() => {
-            if (userId) {
-                fetchMemos();
-            }
-        }, [userId])
-    );
+
+    useEffect(() => {
+        if (refreshCollection) {
+            fetchMemos();
+        }
+    }, [refreshCollection]);
 
     const onRefresh = async () => {
         setRefreshing(true);

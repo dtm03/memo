@@ -12,7 +12,6 @@ public class CreateMemoRequest {
     private String link;
     private Set<Creator> creators;
     private User owner;
-    private User user;
 
     public String getQuote() {
         return quote;

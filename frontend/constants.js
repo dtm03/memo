@@ -1,9 +1,9 @@
-import { Dimensions } from "react-native";
+import {Dimensions} from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import colors from "./styles/colors";
 import React from "react";
 
-const { width, height } = Dimensions.get("screen");
+const {width, height} = Dimensions.get("screen");
 
 export const SCREEN_WIDTH = width;
 export const SCREEN_HEIGHT = height;
@@ -17,8 +17,8 @@ export const Category = Object.freeze({
 });
 
 export const Source = Object.freeze({
-   INSPIRATION: "Inspiration",
-   COLLECTION: "Collection",
+    INSPIRATION: "Inspiration",
+    COLLECTION: "Collection",
 });
 
 export const categories = [
@@ -26,8 +26,11 @@ export const categories = [
     {label: <Icon name="movie" size={24} color={colors.tertiaryColor}/>, value: Category.MOVIE},
     {label: <Icon name="library-music" size={24} color={colors.tertiaryColor}/>, value: Category.SONG},
     {label: <Icon name="tv" size={24} color={colors.tertiaryColor}/>, value: Category.SERIES},
-    {label: <Icon name="insert-drive-file" size={24} color={colors.tertiaryColor}/>, value: Category.OTHER}
+    // {label: <Icon name="insert-drive-file" size={24} color={colors.tertiaryColor}/>, value: Category.OTHER}
 ];
 
-export const serverURL =  "http://192.168.0.107:8080/";
-// Stuttgart Heim: "http://192.168.178.143:8080/";
+// München Eltern
+// export const serverURL =  "http://192.168.0.107:8080/";
+
+// Stuttgart Heim:
+export const serverURL = "http://192.168.178.143:8080/";

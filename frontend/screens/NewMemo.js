@@ -22,11 +22,12 @@ const NewMemo = ({navigation}) => {
         const [query, setQuery] = useState('');
         const [results, setResults] = useState([]);
         const [selectedMedia, setSelectedMedia] = useState(null);
-        const {userId} = useContext(UserContext);
+        const {userId, triggerRefreshCollection} = useContext(UserContext);
 
         const handleSearchMedia = async (text, category) => {
             setQuery(text);
-            if (text.length > 2 && category !== Category.OTHER) {
+            // && category !== Category.OTHER
+            if (text.length > 2) {
                 setIsSearching(true);
                 const results = await searchMedia(text, category);
                 setResults(results);
@@ -53,9 +54,9 @@ const NewMemo = ({navigation}) => {
         const reset = () => {
             deleteMediaSelection();
             setQuote('');
-            if (selectedCategory === Category.OTHER) {
-                setCreatorIds('');
-            }
+            // if (selectedCategory === Category.OTHER) {
+            //     setCreatorIds('');
+            // }
         }
 
         const addQuote = async () => {
@@ -67,7 +68,8 @@ const NewMemo = ({navigation}) => {
                 });
                 return;
             }
-            if (!selectedMedia && selectedCategory !== Category.OTHER) {
+            // && selectedCategory !== Category.OTHER
+            if (!selectedMedia) {
                 Toast.show({
                     type: 'success',
                     text1: 'Please select a source',
@@ -104,6 +106,8 @@ const NewMemo = ({navigation}) => {
             } catch (error) {
                 console.error("Error adding memo:", error);
             }
+
+            triggerRefreshCollection();
         };
 
         return (
@@ -141,16 +145,16 @@ const NewMemo = ({navigation}) => {
                         maxLength={50}
                     />
                 )}
-                {selectedCategory === Category.OTHER && (
-                    <TextInput
-                        style={newMemoStyles.input}
-                        value={creatorIds}
-                        placeholderTextColor={colors.tertiaryColor}
-                        onChangeText={setCreatorIds}
-                        placeholder="Enter the creators"
-                        maxLength={50}
-                    />
-                )}
+                {/*{selectedCategory === Category.OTHER && (*/}
+                {/*    <TextInput*/}
+                {/*        style={newMemoStyles.input}*/}
+                {/*        value={creatorIds}*/}
+                {/*        placeholderTextColor={colors.tertiaryColor}*/}
+                {/*        onChangeText={setCreatorIds}*/}
+                {/*        placeholder="Enter the creators"*/}
+                {/*        maxLength={50}*/}
+                {/*    />*/}
+                {/*)}*/}
                 <View style={newMemoStyles.buttonContainer}>
                     <TouchableOpacity style={{paddingHorizontal: 20}} onPress={reset}>
                         <Icon name={"cached"} size={30} color={colors.secondaryColor}/>

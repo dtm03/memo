@@ -52,9 +52,9 @@ const ButtonContainer = ({isEditable, setIsEditable, isMemoVisible, newQuote, me
             <TouchableOpacity onPress={() => toggleVisibility(isVisible, setIsVisible)}>
                 <Icon name={isVisible ? "visibility" : "visibility-off"} size={30} color={colors.tertiaryColor}/>
             </TouchableOpacity>
-            <TouchableOpacity>
-                <Icon name="share" size={30} color={colors.tertiaryColor}/>
-            </TouchableOpacity>
+            {/*<TouchableOpacity>*/}
+            {/*    <Icon name="share" size={30} color={colors.tertiaryColor}/>*/}
+            {/*</TouchableOpacity>*/}
             <TouchableOpacity onPress={handleToggleEditing}>
                 <Icon name={isEditable ? "save" : "mode-edit"} size={30} color={colors.tertiaryColor}/>
             </TouchableOpacity>

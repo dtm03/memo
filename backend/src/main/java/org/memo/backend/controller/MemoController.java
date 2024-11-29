@@ -43,10 +43,9 @@ public class MemoController {
         memo.setOwner(memoBody.getOwner() == null ? user : memoBody.getOwner());
 
         Set<Creator> creators = memoBody.getCreators().stream().map(creator -> {
-            return creatorRepository.findByNameAndLastName(creator.getName(), creator.getLastName()).orElseGet(() -> {
+            return creatorRepository.findByName(creator.getName()).orElseGet(() -> {
                 Creator newCreator = new Creator();
                 newCreator.setName(creator.getName());
-                newCreator.setLastName(creator.getLastName());
                 return creatorRepository.save(newCreator);
             });
         }).collect(Collectors.toSet());
@@ -70,7 +69,7 @@ public class MemoController {
     }
 
     @PutMapping("/{memoId}/{isVisible}")
-    public ResponseEntity<?> updateVisiblity(@PathVariable Long memoId, @PathVariable boolean isVisible) {
+    public ResponseEntity<?> updateVisibility(@PathVariable Long memoId, @PathVariable boolean isVisible) {
         Memo memo = memoRepository.findById(memoId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         memo.setIsVisible(isVisible);
         memoRepository.save(memo);

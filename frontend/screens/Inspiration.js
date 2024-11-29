@@ -9,28 +9,29 @@ import {UserContext} from "../components/UserContext";
 const Inspiration = () => {
     const [memos, setMemos] = useState([]);
     const [refreshing, setRefreshing] = useState(false);
-    const { userId } = useContext(UserContext);
+    const { userId, refreshCollection} = useContext(UserContext);
 
     const fetchMemos = async () => {
         try {
             const response = await axios.get(`${serverURL}memo`);
+            const filteredMemos = await response.data.filter(memo => memo.owner.userId !== userId && memo.user.userId !== userId);
             setMemos(response.data || []);
-            // const filteredMemos = response.data.filter(memo => memo.owner.userId !== userId && memo.user.userId !== userId);
-            // setMemos(filteredMemos || []);
         } catch (error) {
-            console.error("Error fetching memos:", error);
+            console.error("Error fetching memos in Inspiration:", error);
         }
     };
-
-    useEffect(() => {
-        fetchMemos();
-    }, []);
 
     useFocusEffect(
         useCallback(() => {
             fetchMemos();
-        }, [])
+        }, [userId])
     );
+
+    useEffect(() => {
+        if (refreshCollection) {
+            fetchMemos();
+        }
+    }, [refreshCollection]);
 
     const onRefresh = async () => {
         setRefreshing(true);
