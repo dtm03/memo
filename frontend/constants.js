@@ -30,7 +30,7 @@ export const categories = [
 ];
 
 // München Eltern
-// export const serverURL =  "http://192.168.0.107:8080/";
+export const serverURL =  "http://192.168.0.107:8080/";
 
 // Stuttgart Heim:
-export const serverURL = "http://192.168.178.143:8080/";
+// export const serverURL = "http://192.168.178.143:8080/";

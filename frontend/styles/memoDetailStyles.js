@@ -27,7 +27,7 @@ export const memoDetailStyles = StyleSheet.create({
     quote: {
         textAlign: "center",
         color: colors.primaryTextColor,
-        fontFamily: "LibreBaskerville_700Bold",
+        fontFamily: "LibreBaskerville-Bold",
         lineHeight: 30,
     },
     authors: {

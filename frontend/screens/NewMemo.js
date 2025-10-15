@@ -119,6 +119,18 @@ const NewMemo = ({navigation}) => {
                         handleSearchMedia(query, value);
                     }}
                 />
+                {selectedMedia ? (
+                    <SelectedMedia selectedMedia={selectedMedia} deleteMediaSelection={deleteMediaSelection}/>
+                ) : (
+                    <TextInput
+                        style={newMemoStyles.input}
+                        placeholder="Enter it's source"
+                        placeholderTextColor={colors.tertiaryColor}
+                        value={query}
+                        onChangeText={(text) => handleSearchMedia(text, selectedCategory)}
+                        maxLength={50}
+                    />
+                )}
                 <View style={newMemoStyles.quoteInputSearchContainer}>
                     {!isSearching ? (
                         <TextInput
@@ -133,18 +145,6 @@ const NewMemo = ({navigation}) => {
                         <ResultList results={results} onSelectMedia={selectMedia}/>
                     )}
                 </View>
-                {selectedMedia ? (
-                    <SelectedMedia selectedMedia={selectedMedia} deleteMediaSelection={deleteMediaSelection}/>
-                ) : (
-                    <TextInput
-                        style={newMemoStyles.input}
-                        placeholder="Enter it's source"
-                        placeholderTextColor={colors.tertiaryColor}
-                        value={query}
-                        onChangeText={(text) => handleSearchMedia(text, selectedCategory)}
-                        maxLength={50}
-                    />
-                )}
                 {/*{selectedCategory === Category.OTHER && (*/}
                 {/*    <TextInput*/}
                 {/*        style={newMemoStyles.input}*/}

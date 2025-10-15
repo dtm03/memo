@@ -21,7 +21,7 @@ export const memoCardStyles = StyleSheet.create({
         fontSize: 22,
         textAlign: "center",
         lineHeight: 30,
-        fontFamily: 'LibreBaskerville_700Bold',
+        fontFamily: 'LibreBaskerville-Bold',
         color: colors.primaryTextColor,
     },
     authorContainer: {

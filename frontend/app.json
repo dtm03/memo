@@ -17,7 +17,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png"
       },
-      "package": "com.dtm03.memo"
+      "package": "com.dtm03.memo",
+      "newArchEnabled": true
     },
     "web": {
       "favicon": "./assets/favicon.png"

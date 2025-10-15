@@ -26,12 +26,13 @@ const MemoDetail = ({route}) => {
         ).join(", ") : "";
     const windowHeight = useWindowDimensions().height;
 
-    useEffect(() => {
-        if (isEditable && textInputRef.current) {
-            textInputRef.current.focus();
-            textInputRef.current.setSelection(newQuote.length);
-        }
-    }, [isEditable, newQuote.length]);
+    // useEffect(() => {
+    //     if (isEditable && textInputRef.current) {
+    //         textInputRef.current.focus();
+    //         textInputRef.current.setSelection(newQuote.length);
+    //         console.log('Focus and select text input');
+    //     }
+    // }, [isEditable, newQuote.length]);
 
     useEffect(() => {
         const fetchAndSetMediaDetails = async (mediaId) => {

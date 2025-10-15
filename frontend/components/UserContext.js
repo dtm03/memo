@@ -10,14 +10,14 @@ export const UserProvider = ({children}) => {
     const [refreshCollection, setRefreshCollection] = useState(false);
 
     useEffect(() => {
-        // const clearAsyncStorage = async () => {
-        //     try {
-        //         await AsyncStorage.clear();
-        //         console.log('AsyncStorage cleared');
-        //     } catch (error) {
-        //         console.error('Error clearing AsyncStorage:', error);
-        //     }
-        // };
+        const clearAsyncStorage = async () => {
+            try {
+                await AsyncStorage.clear();
+                console.log('AsyncStorage cleared');
+            } catch (error) {
+                console.error('Error clearing AsyncStorage:', error);
+            }
+        };
 
         const fetchUserId = async () => {
             try {
@@ -29,6 +29,7 @@ export const UserProvider = ({children}) => {
                     const newUserId = response.data.toString();
                     await AsyncStorage.setItem('userId', newUserId);
                     setUserId(newUserId);
+                    console.log('New user ID:', newUserId);
                 }
             } catch (error) {
                 console.error("Error fetching user ID:", error);
