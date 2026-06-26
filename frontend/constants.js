@@ -1,36 +1,52 @@
-import {Dimensions} from "react-native";
-import Icon from "react-native-vector-icons/MaterialIcons";
+import { Dimensions } from "react-native";
 import colors from "./styles/colors";
 import React from "react";
+import BookIcon from "./assets/icons/book.svg";
+import MovieIcon from "./assets/icons/movie.svg";
+import MusicIcon from "./assets/icons/library-music.svg";
+import SeriesIcon from "./assets/icons/tv.svg";
+import OtherIcon from "./assets/icons/file.svg";
 
-const {width, height} = Dimensions.get("screen");
+const { width, height } = Dimensions.get("screen");
 
 export const SCREEN_WIDTH = width;
 export const SCREEN_HEIGHT = height;
 
 export const Category = Object.freeze({
-    MOVIE: "Movie",
-    SONG: "Song",
-    BOOK: "Book",
-    SERIES: "Series",
-    OTHER: "Other"
+  MOVIE: "Movie",
+  SONG: "Song",
+  BOOK: "Book",
+  SERIES: "Series",
+  OTHER: "Other",
 });
 
 export const Source = Object.freeze({
-    INSPIRATION: "Inspiration",
-    COLLECTION: "Collection",
+  INSPIRATION: "Inspiration",
+  COLLECTION: "Collection",
 });
 
 export const categories = [
-    {label: <Icon name="menu-book" size={24} color={colors.tertiaryColor}/>, value: Category.BOOK},
-    {label: <Icon name="movie" size={24} color={colors.tertiaryColor}/>, value: Category.MOVIE},
-    {label: <Icon name="library-music" size={24} color={colors.tertiaryColor}/>, value: Category.SONG},
-    {label: <Icon name="tv" size={24} color={colors.tertiaryColor}/>, value: Category.SERIES},
-    // {label: <Icon name="insert-drive-file" size={24} color={colors.tertiaryColor}/>, value: Category.OTHER}
+  {
+    label: <BookIcon height={24} width={24} color={colors.tertiaryColor} />,
+    value: Category.BOOK,
+  },
+  {
+    label: <MovieIcon height={24} width={24} color={colors.tertiaryColor} />,
+    value: Category.MOVIE,
+  },
+  {
+    label: <MusicIcon height={24} width={24} color={colors.tertiaryColor} />,
+    value: Category.SONG,
+  },
+  {
+    label: <SeriesIcon height={24} width={24} color={colors.tertiaryColor} />,
+    value: Category.SERIES,
+  },
+  {
+    label: <OtherIcon height={24} width={24} color={colors.tertiaryColor} />,
+    value: Category.OTHER,
+  },
 ];
 
-// München Eltern
-export const serverURL =  "http://192.168.0.107:8080/";
-
-// Stuttgart Heim:
-// export const serverURL = "http://192.168.178.143:8080/";
+export const serverURL =
+  process.env.EXPO_PUBLIC_SERVER_URL || "http://192.168.178.113:8080/";

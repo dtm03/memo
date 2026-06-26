@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import Menu from "./screens/Menu";
 import MemoDetail from "./screens/MemoDetail";
 import Collection from "./screens/Collection";
@@ -9,67 +10,67 @@ import NewMemo from "./screens/NewMemo";
 import { UserProvider } from "./components/UserContext";
 import Toast, { BaseToast } from "react-native-toast-message";
 import colors from "./styles/colors";
-import * as Font from 'expo-font';
-import { enableScreens } from 'react-native-screens';
+import * as Font from "expo-font";
+import { enableScreens } from "react-native-screens";
 
 enableScreens();
 
 const toastConfig = {
-    success: (props) => (
-        <BaseToast
-            {...props}
-            style={{ borderLeftColor: colors.tertiaryColor }}
-            contentContainerStyle={{ paddingHorizontal: 15 }}
-            text1Style={{
-                fontSize: 15,
-                fontWeight: '700',
-                color: colors.primaryColor,
-            }}
-        />
-    ),
+  success: (props) => (
+    <BaseToast
+      {...props}
+      style={{ borderLeftColor: colors.tertiaryColor }}
+      contentContainerStyle={{ paddingHorizontal: 15 }}
+      text1Style={{
+        fontSize: 15,
+        fontWeight: "700",
+        color: colors.primaryColor,
+      }}
+    />
+  ),
 };
 
 const Stack = createStackNavigator();
 
 const App = () => {
-    const [fontsLoaded, setFontsLoaded] = useState(false);
+  const [fontsLoaded, setFontsLoaded] = useState(false);
 
-    useEffect(() => {
-        const loadFonts = async () => {
-            await Font.loadAsync({
-                'LibreBaskerville-Regular': require('./assets/LibreBaskerville-Regular.ttf'),
-                'LibreBaskerville-Bold': require('./assets/LibreBaskerville-Bold.ttf'),
-                'LibreBaskerville-Italic': require('./assets/LibreBaskerville-Italic.ttf'),
-            });
-            setFontsLoaded(true);
-        };
+  useEffect(() => {
+    const loadFonts = async () => {
+      await Font.loadAsync({
+        "LibreBaskerville-Regular": require("./assets/LibreBaskerville-Regular.ttf"),
+        "LibreBaskerville-Bold": require("./assets/LibreBaskerville-Bold.ttf"),
+        "LibreBaskerville-Italic": require("./assets/LibreBaskerville-Italic.ttf"),
+      });
+      setFontsLoaded(true);
+    };
 
-        loadFonts();
-    }, []);
+    loadFonts();
+  }, []);
 
-    if (!fontsLoaded) {
-        return null;
-    }
+  if (!fontsLoaded) {
+    return null;
+  }
 
-    return (
-        <UserProvider>
-            <NavigationContainer>
-                <Stack.Navigator
-                    initialRouteName="Menu"
-                    screenOptions={{ headerShown: false }}
-                >
-                    <Stack.Screen name="Main" component={Menu} />
-                    <Stack.Screen name="Memo" component={MemoDetail} />
-                    <Stack.Screen name="Collection" component={Collection} />
-                    <Stack.Screen name="Inspiration" component={Inspiration} />
-                    <Stack.Screen name="NewMemo">
-                        {props => <NewMemo {...props} userId={userId} />}
-                    </Stack.Screen>
-                </Stack.Navigator>
-                <Toast config={toastConfig} />
-            </NavigationContainer>
-        </UserProvider>
-    );
+  return (
+    <UserProvider>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <Stack.Navigator
+            initialRouteName="Menu"
+            screenOptions={{ headerShown: false }}
+          >
+            <Stack.Screen name="Main" component={Menu} />
+            <Stack.Screen name="Memo" component={MemoDetail} />
+            <Stack.Screen name="Collection" component={Collection} />
+            <Stack.Screen name="Inspiration" component={Inspiration} />
+            <Stack.Screen name="NewMemo" component={NewMemo} />
+          </Stack.Navigator>
+          <Toast config={toastConfig} />
+        </NavigationContainer>
+      </SafeAreaProvider>
+    </UserProvider>
+  );
 };
 
 export default App;

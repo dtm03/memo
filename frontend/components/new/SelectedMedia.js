@@ -1,8 +1,8 @@
 import React from "react";
 import {View, Text, TouchableOpacity, Image} from "react-native";
-import Icon from "react-native-vector-icons/MaterialIcons";
 import colors from "../../styles/colors";
 import {selectedMediaStyles} from "../../styles/selectedMediaStyles";
+import DeleteIcon from "../../assets/icons/delete.svg";
 
 const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {
@@ -31,7 +31,7 @@ const SelectedMedia = ({selectedMedia, deleteMediaSelection}) => {
                 </View>
             </View>
             <TouchableOpacity onPress={deleteMediaSelection}>
-                <Icon name="delete-outline" size={35} color={colors.tertiaryColor}/>
+                <DeleteIcon size={35} color={colors.tertiaryColor}/>
             </TouchableOpacity>
         </View>
     );
