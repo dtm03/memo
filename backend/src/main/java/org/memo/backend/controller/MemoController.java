@@ -37,7 +37,7 @@ public class MemoController {
         Memo memo = new Memo();
         memo.setQuote(memoBody.getQuote());
         memo.setIsVisible(memoBody.getIsVisible());
-        memo.setMediaId(memoBody.getMediaId());
+        memo.setMediaId(Long.parseLong(memoBody.getMediaId()));
         memo.setLink(memoBody.getLink());
         memo.setUser(user);
         memo.setOwner(memoBody.getOwner() == null ? user : memoBody.getOwner());

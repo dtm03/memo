@@ -6,15 +6,14 @@ export const newMemoStyles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    marginTop: 50,
+    marginTop: 0,
     paddingHorizontal: 15,
-    paddingBottom: 85,
-    height: SCREEN_HEIGHT,
-    width: SCREEN_WIDTH,
+    paddingBottom: 50,
     overflow: "hidden",
+    backgroundColor: colors.primaryColor,
   },
   quoteInputSearchContainer: {
-    height: 414,
+    flex: 1,
     marginBottom: 20,
     width: SCREEN_WIDTH - 30,
     backgroundColor: colors.secondaryColor,
@@ -60,7 +59,7 @@ export const newMemoStyles = StyleSheet.create({
     alignItems: "center",
   },
   buttonText: {
-    color: colors.primaryColor,
+    color: colors.tertiaryColor,
     fontSize: 16,
     lineHeight: 46,
     fontWeight: "bold",

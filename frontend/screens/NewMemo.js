@@ -137,7 +137,10 @@ const NewMemo = ({ navigation }) => {
   };
 
   return (
-    <View style={newMemoStyles.container} pointerEvents="box-none">
+    <View
+      style={[newMemoStyles.container, { paddingTop: insets.top + 20 }]}
+      pointerEvents="box-none"
+    >
       <SwitchSelector
         options={categories}
         onSelect={(value) => {

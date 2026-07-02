@@ -4,8 +4,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Inspiration from "./Inspiration";
 import Collection from "./Collection";
 import Tabs from "../components/home/Tabs";
-import NewMemo from "./NewMemo";
-import AddIcon from "../assets/icons/add.svg";
 import colors from "../styles/colors";
 
 const { width } = Dimensions.get("screen");
@@ -13,12 +11,11 @@ const { width } = Dimensions.get("screen");
 const tabs = {
   Inspo: <Inspiration />,
   Collection: <Collection />,
-  plus: <NewMemo />,
 };
 
 const data = Object.keys(tabs).map((i) => ({
   key: i,
-  title: i === "plus" ? <AddIcon size={20} color="white" /> : i,
+  title: i,
   view: tabs[i],
   ref: React.createRef(),
 }));
@@ -45,7 +42,7 @@ export default function Menu() {
         backgroundColor: colors.primaryColor,
       }}
     >
-      <View style={{ paddingTop: 15 }}>
+      <View style={{ flex: 1, paddingTop: 15 }}>
         <Animated.FlatList
           ref={ref}
           data={data}
@@ -67,9 +64,9 @@ export default function Menu() {
           decelerationRate="fast"
           snapToInterval={width}
           snapToAlignment="start"
-          renderItem={({ item }) => {
-            return item.view;
-          }}
+          renderItem={({ item }) => (
+            <View style={{ width, flex: 1 }}>{item.view}</View>
+          )}
         />
         <Tabs scrollX={scrollX} data={data} onItemPress={onItemPress} />
       </View>
