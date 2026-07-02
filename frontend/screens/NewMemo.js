@@ -106,10 +106,12 @@ const NewMemo = ({ navigation }) => {
     const searchQuery = encodeURIComponent(mediaName + " " + artistName);
     const amazonSearchLink = `https://www.amazon.com/s?k=${searchQuery}`;
 
-    const creators =
-      selectedCategory === Category.OTHER
-        ? creatorIds.split(",").map((name) => ({ name: name.trim() }))
-        : [{ name: selectedMedia ? selectedMedia.artistName : "" }];
+    // const creators =
+    //   selectedCategory === Category.OTHER
+    //     ? creatorIds.split(",").map((name) => ({ name: name.trim() }))
+    //     : [{ name: selectedMedia ? selectedMedia.artistName : "" }];
+
+    const creators = [{ name: selectedMedia ? selectedMedia.artistName : "" }];
 
     const newMemo = {
       quote: quote,
