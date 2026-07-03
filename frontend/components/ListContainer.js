@@ -18,7 +18,7 @@ const ListContainer = ({
   bottomBar,
 }) => {
   const insets = useSafeAreaInsets();
-  const contentBottom = bottomBar ? 200 + insets.bottom : 64 + insets.bottom;
+  const contentBottom = 64 + insets.bottom;
 
   return (
     <View style={styles.container}>
@@ -39,11 +39,6 @@ const ListContainer = ({
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       />
-      {bottomBar && (
-        <View style={[styles.bottomBarWrapper, { bottom: 50 }]}>
-          {bottomBar}
-        </View>
-      )}
     </View>
   );
 };
@@ -56,14 +51,6 @@ const styles = StyleSheet.create({
   list: {
     flex: 1,
     width: "100%",
-  },
-  bottomBarWrapper: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    width: "100%",
-    paddingHorizontal: 15,
-    backgroundColor: "transparent",
   },
 });
 

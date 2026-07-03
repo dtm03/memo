@@ -7,7 +7,6 @@ import MovieIcon from "../../assets/icons/movie.svg";
 import MusicIcon from "../../assets/icons/library-music.svg";
 import BookIcon from "../../assets/icons/book.svg";
 import SeriesIcon from "../../assets/icons/tv.svg";
-// import OtherIcon from "../../assets/icons/file.svg";
 
 const MediaInfoBox = ({ link, media }) => {
   const getCategoryIcon = (category) => {
@@ -28,14 +27,6 @@ const MediaInfoBox = ({ link, media }) => {
         );
       case Category.SERIES:
         return <SeriesIcon name="tv" size={30} color={colors.tertiaryColor} />;
-      // default:
-      //   return (
-      //     <OtherIcon
-      //       name="insert-drive-file"
-      //       size={30}
-      //       color={colors.tertiaryColor}
-      //     />
-      //   );
     }
   };
 

@@ -1,38 +1,39 @@
-import {StyleSheet, Dimensions} from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 import colors from "../styles/colors";
 
-const {width, height} = Dimensions.get("screen");
+const { width, height } = Dimensions.get("screen");
 
 export const editMemoStyles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        height,
-        width,
-        backgroundColor: colors.primaryColor,
-    },
-    button: {
-        backgroundColor: colors.secondaryColor,
-        paddingHorizontal: 20,
-        borderRadius: 23,
-        height: 46,
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    buttonText: {
-        color: colors.primaryColor,
-        fontSize: 16,
-        lineHeight: 46,
-        fontWeight: "bold",
-    },
-    quoteInput: {
-        textAlignVertical: "top",
-        padding: 23,
-        borderRadius: 15,
-        marginBottom: 20,
-        backgroundColor: colors.secondaryColor,
-        width: width - 30,
-        fontSize: 16,
-    }
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    height,
+    width,
+    backgroundColor: colors.primaryColor,
+  },
+  button: {
+    backgroundColor: colors.secondaryColor,
+    paddingHorizontal: 20,
+    borderRadius: 23,
+    height: 46,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  buttonText: {
+    color: colors.primaryColor,
+    fontSize: 16,
+    lineHeight: 46,
+    fontWeight: "bold",
+  },
+  quoteInput: {
+    textAlignVertical: "top",
+    padding: 23,
+    borderRadius: 15,
+    marginBottom: 20,
+    backgroundColor: colors.secondaryColor,
+    width: width - 30,
+    fontSize: 16,
+    fontWeight: "bold",
+  },
 });

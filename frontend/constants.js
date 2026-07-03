@@ -5,7 +5,6 @@ import BookIcon from "./assets/icons/book.svg";
 import MovieIcon from "./assets/icons/movie.svg";
 import MusicIcon from "./assets/icons/library-music.svg";
 import SeriesIcon from "./assets/icons/tv.svg";
-// import OtherIcon from "./assets/icons/file.svg";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -42,10 +41,6 @@ export const categories = [
     label: <SeriesIcon height={24} width={24} color={colors.tertiaryColor} />,
     value: Category.SERIES,
   },
-  // {
-  //   label: <OtherIcon height={24} width={24} color={colors.tertiaryColor} />,
-  //   value: Category.OTHER,
-  // },
 ];
 
 export const serverURL = "http://192.168.2.106:8080/";

@@ -46,6 +46,7 @@ export const memoDetailStyles = StyleSheet.create({
     textAlign: "center",
     color: colors.primaryTextColor,
     fontFamily: "LibreBaskerville-Bold",
+    fontSize: 16,
     lineHeight: 30,
   },
   authors: {

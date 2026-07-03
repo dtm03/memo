@@ -38,7 +38,6 @@ const NewMemo = ({ navigation }) => {
 
   const handleSearchMedia = async (text, category) => {
     setQuery(text);
-    // && category !== Category.OTHER
     if (text.length > 2) {
       setIsSearching(true);
       const results = await searchMedia(text, category);
@@ -66,9 +65,6 @@ const NewMemo = ({ navigation }) => {
   const reset = () => {
     deleteMediaSelection();
     setQuote("");
-    // if (selectedCategory === Category.OTHER) {
-    //     setCreatorIds('');
-    // }
   };
 
   const addQuote = async () => {
@@ -80,7 +76,6 @@ const NewMemo = ({ navigation }) => {
       });
       return;
     }
-    // && selectedCategory !== Category.OTHER
     if (!selectedMedia) {
       Toast.show({
         type: "success",
@@ -105,11 +100,6 @@ const NewMemo = ({ navigation }) => {
     const artistName = selectedMedia ? selectedMedia.artistName : "";
     const searchQuery = encodeURIComponent(mediaName + " " + artistName);
     const amazonSearchLink = `https://www.amazon.com/s?k=${searchQuery}`;
-
-    // const creators =
-    //   selectedCategory === Category.OTHER
-    //     ? creatorIds.split(",").map((name) => ({ name: name.trim() }))
-    //     : [{ name: selectedMedia ? selectedMedia.artistName : "" }];
 
     const creators = [{ name: selectedMedia ? selectedMedia.artistName : "" }];
 
@@ -138,7 +128,7 @@ const NewMemo = ({ navigation }) => {
 
   return (
     <View
-      style={[newMemoStyles.container, { paddingTop: insets.top + 20 }]}
+      style={[newMemoStyles.container, { paddingTop: insets.top }]}
       pointerEvents="box-none"
     >
       <SwitchSelector

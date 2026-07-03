@@ -33,7 +33,7 @@ const Tabs = ({ data, scrollX, onItemPress }) => {
 
   return (
     <View
-      style={{ position: "absolute", marginVertical: 15, width }}
+      style={{ position: "absolute", width }}
       ref={containerRef}
       onLayout={() => {
         let m = [];
