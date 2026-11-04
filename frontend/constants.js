@@ -49,4 +49,4 @@ export const categories = [
 ];
 
 export const serverURL =
-  process.env.EXPO_PUBLIC_SERVER_URL || "http://192.168.178.113:8080/";
+  process.env.EXPO_PUBLIC_SERVER_URL ?? "http://localhost:8080/";
