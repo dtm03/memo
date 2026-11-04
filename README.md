@@ -1,0 +1,1 @@
+This is an app that allows you to save quotes you like and link them to a source as well as save quotes others created to your own collection. The goal was to get better in UI design and build another working backend.
